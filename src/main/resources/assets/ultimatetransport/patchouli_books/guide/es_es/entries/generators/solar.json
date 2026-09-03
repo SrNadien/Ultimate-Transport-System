@@ -1,0 +1,16 @@
+{
+  "name": "Generador solar",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:solar_generator",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Energía gratis, y poca: $(o)12 FE/t$() mientras sea de día, no llueva y el bloque de encima vea el cielo.$(br2)No tiene ranura de combustible porque no come nada. Pon una fila en el tejado y un cable de vuelta a una celda y te la llenan en unos cuantos días.$(br2)Su búfer guarda 40.000 FE y entrega hasta 200 FE/t."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:solar_generator"
+    }
+  ]
+}

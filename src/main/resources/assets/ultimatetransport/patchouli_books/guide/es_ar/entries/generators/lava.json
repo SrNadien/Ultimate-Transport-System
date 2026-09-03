@@ -1,0 +1,16 @@
+{
+  "name": "Generador de lava",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:lava_generator",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Se bebe un cubo de lava cada vez y lo quema a $(o)90 FE/t$() durante 1.400 ticks. Más lento de alimentar que el carbón, y mucho más denso por viaje.$(br2)El cubo es un envase, no un consumible: vuelve vacío a la ranura, listo para sacarlo y rellenarlo.$(br2)Su búfer guarda 120.000 FE y entrega hasta 800 FE/t."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:lava_generator"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Generador de combustible",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:fuel_generator",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Quema todo lo que quemaría un horno, a $(o)40 FE/t$() y durante exactamente lo que habría durado en el horno. Carbón, tablones, una vara de blaze, todo vale.$(br2)Su búfer guarda 80.000 FE y entrega hasta 400 FE/t.$(br2)La ranura acepta combustible de una tolva o de un cable de objetos igual que de tu mano."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:fuel_generator"
+    }
+  ]
+}

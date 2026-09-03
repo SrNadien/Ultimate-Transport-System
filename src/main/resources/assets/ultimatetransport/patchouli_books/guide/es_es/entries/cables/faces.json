@@ -1,0 +1,28 @@
+{
+  "name": "Configurar una cara",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:configurator",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Dos modos",
+      "text": "Un cable solo tiene ajustes en las caras que tocan algo por donde pueda mover carga. El resto del tendido es fontanería: los cables se unen solos y no hay nada que elegir.$(br2)Esas caras útiles son una de dos cosas.$(br)$(a)Insertar$(): la red entrega dentro del bloque. Así empieza toda cara.$(br)$(c)Extraer$(): el cable tira de lo que hay en el bloque."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Cambiarlo",
+      "text": "Clic derecho en una cara útil con el $(l:tools/configurator)Configurador$(/l) para alternar entre las dos.$(br2)Una cara en extracción lleva un collar naranja, así que ves de dónde está tirando la red sin abrir nada. La de insertar va sin marcar a propósito: casi toda cara que toca una máquina es de inserción, y marcarlas todas no diría nada."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "La pantalla de la cara",
+      "text": "Clic derecho con la $(o)mano vacía$() en una cara en extracción para abrir sus ajustes.$(br2)A la izquierda hay cuatro botones: modo redstone, modo de reparto, si el filtro es lista blanca o negra, y el tema de la pantalla.$(br2)Arriba está el buscador y debajo la lista de reglas, con Añadir, Editar y Quitar. La ranura de abajo a la izquierda admite una $(l:cables/upgrades)Mejora$(/l)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Reparto",
+      "text": "Una cara que extrae tiene que decidir a quién le toca qué.$(br2)$(o)Más cercano$(): llena el destino más próximo y luego el siguiente.$(br)$(o)Más lejano$(): al revés.$(br)$(o)Por turnos$(): reparto parejo que sigue donde lo dejó.$(br)$(o)Aleatorio$(): uno cada vez.$(br2)El modo redstone decide si la cara funciona siquiera: ignorar la redstone, apagada con señal, encendida con señal, o siempre apagada."
+    }
+  ]
+}

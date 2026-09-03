@@ -1,0 +1,42 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ultimateavaritiaadditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "avaritia"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_catalyst": {
+      "conditions": {
+        "items": [
+          {
+            "items": "avaritia:infinity_catalyst"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ultimatetransport:creative_energy_cell_avaritia"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_catalyst"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ultimatetransport:creative_energy_cell_avaritia"
+    ]
+  }
+}

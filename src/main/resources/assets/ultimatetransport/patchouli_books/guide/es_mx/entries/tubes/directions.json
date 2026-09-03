@@ -1,0 +1,17 @@
+{
+  "name": "Direcciones fijas",
+  "category": "ultimatetransport:tubes",
+  "icon": "ultimatetransport:tube_up",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "El tubo normal apunta hacia donde lo colocas, que suele ser lo que quieres. Cuando no, hay un tubo por dirección: abajo, arriba, norte, sur, este y oeste.$(br2)Un tubo con dirección ignora la cara que pulsas y siempre apunta a lo suyo, así que puedes tender un tramo horizontal largo sin pensar en qué lado de cada bloque estás apuntando."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Cambiarlos",
+      "text": "Todas las direcciones se convierten entre sí, una por una, y de vuelta al tubo normal. Mete uno en la mesa de crafteo y saca la dirección que querías.$(br2)También se convierten de nueve en nueve y de cuatro en cuatro, así que un stack se cambia en un par de clics en vez de sesenta y cuatro."
+    }
+  ]
+}

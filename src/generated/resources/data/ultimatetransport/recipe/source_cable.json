@@ -1,0 +1,30 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ars_nouveau"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "I": {
+      "tag": "c:ingots/gold"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    },
+    "S": {
+      "item": "ars_nouveau:source_gem"
+    }
+  },
+  "pattern": [
+    "III",
+    "SRS",
+    "III"
+  ],
+  "result": {
+    "count": 16,
+    "id": "ultimatetransport:source_cable"
+  }
+}

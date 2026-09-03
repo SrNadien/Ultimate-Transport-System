@@ -1,0 +1,26 @@
+{
+  "name": "Transport tubes",
+  "category": "ultimatetransport:tubes",
+  "icon": "ultimatetransport:tube",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A tube is a one-way glass corridor. Anything that gets inside is pushed along the tube's axis and keeps accelerating until it reaches the speed cap, so a long run is fast and a short hop is gentle.$(br2)Players, mobs and animals all travel. Fall damage is cancelled the whole time you are inside, so a vertical shaft can be as deep as you like."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Which way it carries",
+      "text": "Every tube points somewhere, and that is the way it carries you. Point Jade at one and it tells you.$(br2)A plain $(l:tubes/directions)Transport Tube$(/l) takes its direction from the face you place it against: place it on the top of a block and you get a tube going up. Craft it into a fixed direction when that is easier."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Building a run",
+      "text": "Tubes join to their neighbours and the walls between them disappear, so a line of them is one continuous corridor.$(br2)A corner is just two tubes meeting: the one you are in hands you to the next, and the next one's direction takes over.$(br2)You cannot get in through the side of a tube. That is what a $(l:tubes/stations)Station$(/l) is for."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:tube"
+    }
+  ]
+}

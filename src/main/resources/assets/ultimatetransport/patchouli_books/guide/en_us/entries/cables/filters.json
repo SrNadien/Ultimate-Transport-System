@@ -1,0 +1,26 @@
+{
+  "name": "Filter rules",
+  "category": "ultimatetransport:cables",
+  "icon": "minecraft:hopper",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A rule names what may pass. Press $(o)Add$() on the face screen and the editor opens.$(br2)$(l)Item/Tag$(): an id like $(#4a4)minecraft:iron_ingot$(), or a tag written with a hash, like $(#4a4)#c:ingots$(). Click the slot on the left holding an item to fill both fields from it."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)NBT data$(): optional. Leave it empty to accept any. The button beside it switches between $(o)the NBT must match exactly$() and $(o)it only has to contain this$().$(br2)The second button inverts the rule, so it means everything $(o)but$() this.$(br2)With no rules at all, everything passes."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Destinations",
+      "text": "A rule can be pinned to one place. Record a block face with the $(l:tools/destination)Destination Tool$(/l), then click the rule's destination slot while holding it.$(br2)Whatever that rule matches then goes to that face and nowhere else, whatever the distribution mode says. This is how one cable feeds twenty machines each the thing it needs."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Shortcuts",
+      "text": "Sneak-click an item in your inventory on the face screen to turn it straight into a rule.$(br2)With JEI installed you can drag an ingredient out of JEI onto the editor's slot."
+    }
+  ]
+}

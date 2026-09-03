@@ -1,0 +1,26 @@
+{
+  "name": "Tubos de transporte",
+  "category": "ultimatetransport:tubes",
+  "icon": "ultimatetransport:tube",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Un tubo es un pasillo de cristal de un solo sentido. Lo que entra sale empujado por el eje del tubo y sigue acelerando hasta el tope de velocidad, así que un tramo largo es rápido y un salto corto es suave.$(br2)Viajan jugadores, mobs y animales. Dentro no hay daño por caída en ningún momento, así que un pozo vertical puede ser tan hondo como quieras."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Hacia dónde lleva",
+      "text": "Todo tubo apunta a algún sitio, y ese es el sentido en que te lleva. Apúntale con Jade y te lo dice.$(br2)El $(l:tubes/directions)tubo de transporte$(/l) normal toma su dirección de la cara contra la que lo colocas: ponlo encima de un bloque y tienes un tubo hacia arriba. Fabrícalo con dirección fija cuando eso sea más cómodo."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Montar un tramo",
+      "text": "Los tubos se unen a sus vecinos y las paredes entre ellos desaparecen, así que una fila es un pasillo continuo.$(br2)Una curva son dos tubos que se tocan: el que te lleva te pasa al siguiente, y manda la dirección del siguiente.$(br2)Por el costado de un tubo no se entra. Para eso está la $(l:tubes/stations)estación$(/l)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:tube"
+    }
+  ]
+}

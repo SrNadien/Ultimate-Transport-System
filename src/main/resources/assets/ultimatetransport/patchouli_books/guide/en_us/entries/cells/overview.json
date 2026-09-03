@@ -1,0 +1,27 @@
+{
+  "name": "Energy cells",
+  "category": "ultimatetransport:cells",
+  "icon": "ultimatetransport:energy_cell_5",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Twelve steps of storage. Capacity quadruples each step, and throughput is a hundredth of capacity, so a bigger cell is also a faster one.$(br2)Tier 1 holds a million FE and moves ten thousand a tick. Tier 10 holds 262 billion.$(br2)The bars on the casing light up as the cell fills, and it glows a little brighter with them."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The last two",
+      "text": "$(6)Tier 11$() has no ceiling at all: it takes whatever it is given and never fills.$(br2)$(6)The Creative Cell$() is the other way round: it never empties, whatever you draw from it. It has no recipe and is only in the creative tab."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Behaviour",
+      "text": "A cell pushes into whatever is next to it, but never into another cell that is fuller than it is, so a bank of cells levels out instead of shuffling the same power back and forth.$(br2)It emits a comparator signal for its fill level, keeps its charge when broken, and works from your inventory: a charged cell in your bag can top up a tool."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:energy_cell_1",
+      "recipe2": "ultimatetransport:energy_cell_2"
+    }
+  ]
+}

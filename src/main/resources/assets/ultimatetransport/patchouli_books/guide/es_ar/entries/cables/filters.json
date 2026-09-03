@@ -1,0 +1,26 @@
+{
+  "name": "Reglas de filtro",
+  "category": "ultimatetransport:cables",
+  "icon": "minecraft:hopper",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Una regla dice qué puede pasar. Apretá $(o)Añadir$() en la pantalla de la cara y se abrí el editor.$(br2)$(l)Objeto/Etiqueta$(): un id como $(#4a4)minecraft:iron_ingot$(), o una etiqueta escrita con numeral, como $(#4a4)#c:ingots$(). Clic en la ranura de la izquierda con un objeto en la mano para rellenar ambos campos de una vez."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l)Datos NBT$(): opcional. Dejalo vacío para aceptar cualquiera. El botón de al lado alterna entre $(o)el NBT debe coincidir exacto$() y $(o)basta con que lo contenga$().$(br2)El segundo botón invierte la regla, así que pasa a significar todo $(o)menos$() esto.$(br2)Sin ninguna regla, pasa todo."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Destinos",
+      "text": "Una regla se puede clavar a un sitio. Grabá la cara de un bloque con la $(l:tools/destination)Herramienta de destino$(/l) y luego hacé clic en la ranura de destino de la regla teniéndola en la mano.$(br2)Lo que esa regla acepte irá a esa cara y a ninguna otra, diga lo que diga el modo de reparto. Así alimenta un solo cable a veinte máquinas, cada una con lo suyo."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Atajos",
+      "text": "Clic agachado sobre un objeto de tu inventario en la pantalla de la cara y se convierte en regla directamente.$(br2)Con JEI instalado puedes arrastrar un ingrediente desde JEI hasta la ranura del editor.$(br2)El buscador de arriba filtra la lista por el nombre del objeto mientras escribes."
+    }
+  ]
+}

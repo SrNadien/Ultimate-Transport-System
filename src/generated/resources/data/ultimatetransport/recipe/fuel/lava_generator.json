@@ -1,0 +1,8 @@
+{
+  "type": "ultimatetransport:generator_fuel",
+  "burn_time": 1400,
+  "fuel": {
+    "item": "minecraft:lava_bucket"
+  },
+  "generator": "lava_generator"
+}

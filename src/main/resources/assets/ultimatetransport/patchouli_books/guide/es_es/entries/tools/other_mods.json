@@ -1,0 +1,27 @@
+{
+  "name": "Compatibilidades",
+  "category": "ultimatetransport:tools",
+  "icon": "minecraft:ender_chest",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Este mod crece cuando hay otros instalados al lado.$(br2)$(o)Mekanism$(): aparece el cable de gases, y mueve químicos con las mismas reglas de red que todo lo demás.$(br)$(o)Ars Nouveau$(): aparece la tubería de maná, y mueve source.$(br)$(o)Flux Networks$(): las celdas y los cables hablan su energía de precisión larga, así que no se pierde nada por redondeo."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Tapar cosas",
+      "text": "$(o)Ender IO$(): una fachada de este mod cubre un haz de conduits, y una de las suyas cubre una cara de cable. Un solo tipo de fachada para los dos trabajos.$(br)$(o)Camol$(): su objeto de camuflaje funciona en cables, tubos, celdas y generadores, así que puedes pintar un tendido dentro de una pared sin fachada ninguna."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Minería",
+      "text": "$(o)FTB Ultimine$() y $(o)Ore Excavation$(): un tendido largo de cable sale de una vez, que es lo que quieres. Las celdas y los generadores quedan fuera, porque un banco de máquinas cayendo entero casi nunca lo es.$(br2)El configurador cuenta como herramienta para Ultimine, así que puedes tenerlo en la mano y arrancar un tendido en cadena."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Recetas",
+      "text": "$(o)Ultimate Avaritia Additions$(): con Avaritia instalado, ocho catalizadores de infinito alrededor de un bloque de infinito dan cuatro mejoras infinity de una tacada, en vez de subir toda la escalera.$(br2)$(o)JEI$() y $(o)Jade$(): cada pantalla y cada bloque de este mod se reportan a los dos."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Upgrades",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:advanced_upgrade",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "An upgrade goes into one face and raises everything that face does. It is also what unlocks the settings at all: a bare face moves things, but cannot be given a redstone mode, a distribution mode or a filter rule.$(br2)$(o)none$(): 256 FE/t, 50 mB/t, 1 item every 20 ticks, no rules."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(6)Basic$(): 1,024 FE/t, 200 mB/t, 4 items / 20t, 5 rules.$(br)$(6)Improved$(): 8,192 FE/t, 1,000 mB/t, 8 items / 10t, 7 rules.$(br)$(6)Advanced$(): 65,536 FE/t, 5,000 mB/t, 16 items / 5t, 9 rules.$(br)$(6)Ultimate$(): 524,288 FE/t, 25,000 mB/t, 32 items / 2t, 12 rules.$(br)$(6)Infinity$(): unlimited, 64 items every tick, 15 rules."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:basic_upgrade",
+      "recipe2": "ultimatetransport:improved_upgrade"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:advanced_upgrade",
+      "recipe2": "ultimatetransport:ultimate_upgrade"
+    }
+  ]
+}

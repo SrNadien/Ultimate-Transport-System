@@ -1,0 +1,16 @@
+.gradle/
+build/
+out/
+run/
+run-data/
+run-*/
+repo/
+mcmodsrepo/
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+bin/
+src/generated/resources/.cache/
+

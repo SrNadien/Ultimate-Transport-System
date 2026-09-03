@@ -1,0 +1,16 @@
+{
+  "name": "Lava Generator",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:lava_generator",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Drinks a bucket of lava at a time and burns it at $(o)90 FE/t$() for 1,400 ticks. Slower to feed than coal, and far denser per trip.$(br2)The bucket is a container, not a consumable: it comes back empty in the slot, ready to be pulled out and refilled.$(br2)Its buffer holds 120,000 FE and it gives out up to 800 FE/t."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:lava_generator"
+    }
+  ]
+}

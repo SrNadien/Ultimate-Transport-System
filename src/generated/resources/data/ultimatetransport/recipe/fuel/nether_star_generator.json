@@ -1,0 +1,8 @@
+{
+  "type": "ultimatetransport:generator_fuel",
+  "burn_time": 20000,
+  "fuel": {
+    "item": "minecraft:nether_star"
+  },
+  "generator": "nether_star_generator"
+}

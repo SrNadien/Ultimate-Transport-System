@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ultimateavaritiaadditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "avaritia"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "avaritia:infinity"
+    },
+    "I": {
+      "item": "avaritia:infinity_catalyst"
+    },
+    "T": {
+      "item": "ultimatetransport:energy_cell_11"
+    }
+  },
+  "pattern": [
+    "ICI",
+    "CTC",
+    "ICI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultimatetransport:creative_energy_cell"
+  }
+}

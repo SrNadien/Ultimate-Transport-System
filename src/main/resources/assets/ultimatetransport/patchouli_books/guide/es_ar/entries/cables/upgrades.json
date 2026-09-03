@@ -1,0 +1,30 @@
+{
+  "name": "Mejoras",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:advanced_upgrade",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Una mejora entra en una cara y sube todo lo que esa cara hace. También es lo que desbloquea los ajustes: una cara desnuda mueve cosas, pero no admite modo redstone, ni reparto, ni reglas de filtro.$(br2)$(o)Sin mejora$(): 256 FE/t, 50 mB/t, 200 de gas/t, 4 objetos cada 20 ticks."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(6)Básica$(): 1.024 FE/t, 100 mB/t, 400 gas/t, 8 objetos / 15t. Desbloquea el modo redstone.$(br)$(6)Mejorada$(): 8.192 FE/t, 500 mB/t, 2.000 gas/t, 16 / 10t. Añade el reparto.$(br)$(6)Avanzada$(): 32.768 FE/t, 2.000 mB/t, 8.000 gas/t, 32 / 5t. Añade los filtros."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(6)Ultimate$(): 131.072 FE/t, 10.000 mB/t, 40.000 gas/t, 64 objetos cada tick.$(br)$(6)Infinity$(): sin límite, 64 objetos cada tick.$(br2)No hay tope de reglas de filtro: lo que decide la mejora es si puedes ponerlas.$(br2)Todos estos valores se pueden cambiar en la configuración del mod."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:basic_upgrade",
+      "recipe2": "ultimatetransport:improved_upgrade"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:advanced_upgrade",
+      "recipe2": "ultimatetransport:ultimate_upgrade"
+    }
+  ]
+}

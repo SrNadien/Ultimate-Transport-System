@@ -1,0 +1,37 @@
+{
+  "name": "What a cable is",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:energy_cable",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A cable network moves its cargo the instant it is asked to. Nothing is ever stored inside a cable: what the network cannot place this tick is refused, so a cable run is never a hidden buffer.$(br2)There is one cable per kind of cargo, plus a universal one that joins every network it touches."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ultimatetransport:energy_cable",
+      "text": "Forge Energy. Works with anything that speaks it, including Mekanism machines and Flux Networks."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ultimatetransport:fluid_cable",
+      "text": "Any NeoForge fluid handler."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ultimatetransport:item_cable",
+      "text": "Any NeoForge item handler."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ultimatetransport:universal_cable",
+      "text": "Carries all of them at once, and bridges networks of different kinds."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:energy_cable",
+      "recipe2": "ultimatetransport:item_cable"
+    }
+  ]
+}

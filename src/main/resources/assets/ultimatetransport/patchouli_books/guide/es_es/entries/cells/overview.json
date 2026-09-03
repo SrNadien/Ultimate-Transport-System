@@ -1,0 +1,27 @@
+{
+  "name": "Celdas de energía",
+  "category": "ultimatetransport:cells",
+  "icon": "ultimatetransport:energy_cell_5",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Doce escalones de almacenamiento. La capacidad se cuadruplica en cada uno, y el caudal es la centésima parte de la capacidad, así que una celda más grande es también más rápida.$(br2)La de nivel 1 guarda un millón de FE y mueve diez mil por tick. La de nivel 10 guarda 262 mil millones.$(br2)Las barras de la carcasa se encienden según se llena, y la celda brilla un poco más con ellas."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Las dos últimas",
+      "text": "La de $(6)nivel 11$() no tiene techo: acepta lo que le des y nunca se llena.$(br2)La $(6)celda creativa$() es lo contrario: nunca se vacía, por mucho que le saques. No tiene receta y solo está en la pestaña creativa."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Comportamiento",
+      "text": "Una celda empuja a lo que tenga al lado, pero nunca a otra celda más llena que ella, así que un banco de celdas se equilibra en vez de pasarse la misma energía de un lado a otro.$(br2)Emite señal de comparador según su nivel, conserva la carga al romperla, y funciona desde tu inventario: una celda cargada en la mochila rellena una herramienta."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:energy_cell_1",
+      "recipe2": "ultimatetransport:energy_cell_2"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "ultimatetransport:block/cable_core_shape",
+  "textures": {
+    "connector": "ultimatetransport:block/item_cable_connector",
+    "core": "ultimatetransport:block/item_cable_core",
+    "structure": "ultimatetransport:block/cable_structure"
+  }
+}

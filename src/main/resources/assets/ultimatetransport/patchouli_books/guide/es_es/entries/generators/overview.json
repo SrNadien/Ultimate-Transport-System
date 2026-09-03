@@ -1,0 +1,17 @@
+{
+  "name": "Generar energía",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:fuel_generator",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Todos los generadores funcionan igual: llenan un búfer y luego lo empujan a lo que tengan al lado y acepte energía. Pon uno pegado a un cable de energía o a una celda y la alimenta sin configurar nada.$(br2)Clic derecho para ver cuánto lleva dentro y a qué ritmo va."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Leer la pantalla",
+      "text": "La barra larga es el búfer. El cuadrito de al lado de la ranura es el indicador de quemado: se vacía según se consume el combustible, como la llama de un horno.$(br2)Un generador en marcha ilumina su cara frontal, así que ves funcionar un banco entero desde el otro lado de la sala."
+    }
+  ]
+}

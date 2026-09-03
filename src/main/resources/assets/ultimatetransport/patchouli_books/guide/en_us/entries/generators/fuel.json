@@ -1,0 +1,16 @@
+{
+  "name": "Fuel Generator",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:fuel_generator",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Burns anything a furnace would, at $(o)40 FE/t$() for exactly as long as the fuel would have lasted in a furnace. Coal, planks, a blaze rod, all of it works.$(br2)Its buffer holds 80,000 FE and it gives out up to 400 FE/t.$(br2)The slot takes fuel from a hopper or an item cable as readily as from your hand."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:fuel_generator"
+    }
+  ]
+}

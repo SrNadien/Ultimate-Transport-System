@@ -1,0 +1,23 @@
+{
+  "name": "Otros mods",
+  "category": "ultimatetransport:tools",
+  "icon": "minecraft:comparator",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Mekanism",
+      "text": "Con Mekanism instalado aparece un quinto cable: el $(6)cable de gases$(), montado sobre la API de químicos de Mekanism. Se configura exactamente igual que los demás, y sus reglas de filtro admiten ids y etiquetas de químicos.$(br2)Sin Mekanism el cable no existe siquiera."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Flux Networks",
+      "text": "Los enchufes y los puntos ya llegan a este mod por Forge Energy sin añadir nada.$(br2)Lo que aporta la integración es la interfaz de precisión larga de Flux en las celdas, el objeto de celda y el cable de energía, para que una celda de nivel 10 en una red Flux mueva su capacidad real en vez de una cifra recortada a dos mil millones."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Jade y JEI",
+      "text": "$(o)Jade$() enseña qué está haciendo la cara a la que apuntas, qué mejora lleva, cuántas reglas tiene y la carga real de una celda. En un tubo te dice hacia dónde lleva.$(br2)$(o)JEI$() trae una página de información de cada bloque de aquí, deja arrastrar un ingrediente desde él hasta una regla de filtro, y tiene una categoría con los combustibles de cada generador."
+    }
+  ]
+}

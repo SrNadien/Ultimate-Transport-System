@@ -1,0 +1,17 @@
+{
+  "name": "Fixed directions",
+  "category": "ultimatetransport:tubes",
+  "icon": "ultimatetransport:tube_up",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The plain tube points wherever you place it, which is usually what you want. When it is not, there is a tube per direction: down, up, north, south, east and west.$(br2)A directed tube ignores the face you click and always points its own way, so you can lay a long horizontal run without thinking about which side of each block you are aiming at."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Swapping",
+      "text": "Every direction converts into every other one, one for one, and back into the plain tube. Drop one in a crafting grid and take out the direction you wanted.$(br2)They stack in nines and fours as well, so a stack converts in a couple of clicks rather than sixty-four."
+    }
+  ]
+}

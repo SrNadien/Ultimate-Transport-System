@@ -1,0 +1,27 @@
+{
+  "name": "Other Mods",
+  "category": "ultimatetransport:tools",
+  "icon": "minecraft:ender_chest",
+  "sortnum": 9,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This mod grows when others are installed alongside it.$(br2)$(o)Mekanism$(): the gas cable appears, and moves chemicals over the same network rules as everything else.$(br)$(o)Ars Nouveau$(): the mana cable appears, and moves source.$(br)$(o)Flux Networks$(): energy cells and cables speak its long-precision energy, so nothing is lost to rounding."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Covering things up",
+      "text": "$(o)Ender IO$(): a facade from this mod covers a conduit bundle, and one of its facades covers a cable face. One kind of facade, both jobs.$(br)$(o)Camol$(): a camo item works on cables, tubes, cells and generators, so you can paint a run into a wall without a facade at all."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Mining",
+      "text": "$(o)FTB Ultimine$() and $(o)Ore Excavation$(): a long cable run comes out in one go, which is what you want. Cells and generators are left out of it, because a bank of machines going at once almost never is.$(br2)The configurator counts as a tool for Ultimine, so you can hold it and chain-pull a run."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Recipes",
+      "text": "$(o)Ultimate Avaritia Additions$(): once you have an infinity storage cell, four infinity upgrades come out of a single craft rather than the long ladder.$(br2)$(o)JEI$() and $(o)Jade$(): every screen and every block in this mod reports itself to both."
+    }
+  ]
+}

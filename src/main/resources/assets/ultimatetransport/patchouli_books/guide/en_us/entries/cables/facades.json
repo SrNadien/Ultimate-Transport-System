@@ -1,0 +1,20 @@
+{
+  "name": "Facades",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:facade",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A facade hides a cable behind any full block.$(br2)Use a blank facade on the block you want to copy. The block is $(o)not$() consumed; you get a facade of it. Then use that facade on a cable face."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The cover is a real two pixel panel, not a sticker: you can see its edge when you look along the face, and it keeps the covering block's texture, tint and transparency.$(br2)Where a cable arm passes through that face, the panel becomes a frame with a hole for the arm.$(br2)The Configurator takes a facade back off, and breaking the cable returns every facade and upgrade it held."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:facade"
+    }
+  ]
+}

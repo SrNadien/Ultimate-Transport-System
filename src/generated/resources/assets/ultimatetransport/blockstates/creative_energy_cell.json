@@ -1,0 +1,124 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_0"
+      },
+      "when": {
+        "charge": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_1"
+      },
+      "when": {
+        "charge": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_2"
+      },
+      "when": {
+        "charge": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_3"
+      },
+      "when": {
+        "charge": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_4"
+      },
+      "when": {
+        "charge": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_5"
+      },
+      "when": {
+        "charge": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_6"
+      },
+      "when": {
+        "charge": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_7"
+      },
+      "when": {
+        "charge": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/creative_energy_cell_8"
+      },
+      "when": {
+        "charge": "8"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/battery_rim_up"
+      },
+      "when": {
+        "up": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/battery_rim_east"
+      },
+      "when": {
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/battery_rim_north"
+      },
+      "when": {
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/battery_rim_down"
+      },
+      "when": {
+        "down": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/battery_rim_west"
+      },
+      "when": {
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ultimatetransport:block/battery_rim_south"
+      },
+      "when": {
+        "south": "false"
+      }
+    }
+  ]
+}

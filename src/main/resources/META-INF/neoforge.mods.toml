@@ -1,0 +1,61 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version}"
+license = "${license}"
+issueTrackerURL = "${issue_tracker}"
+
+[[mods]]
+modId = "${modid}"
+version = "${mod_version}"
+displayName = "${mod_named}"
+authors = "${author}"
+description = '''${mod_description}'''
+logoFile = "logo.png"
+
+[[dependencies.${modid}]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${modid}]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${modid}]]
+modId = "mekanism"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${modid}]]
+modId = "fluxnetworks"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${modid}]]
+modId = "jei"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${modid}]]
+modId = "patchouli"
+type = "required"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${modid}]]
+modId = "jade"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"

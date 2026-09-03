@@ -1,0 +1,7 @@
+{
+  "name": "Ultimate Transport System",
+  "landing_text": "Everything here moves something from one place to another.$(br2)$(l:cables/overview)Cables$(/l) move cargo along a network. $(l:tubes/overview)Tubes$(/l) carry you.$(br2)$(l:cells/overview)Cells$(/l) hold power, and $(l:generators/overview)Generators$(/l) make it.",
+  "use_resource_pack": true,
+  "model": "ultimatetransport:guide_book",
+  "version": 1
+}

@@ -1,0 +1,20 @@
+{
+  "values": [
+    "ultimatetransport:energy_cell_1",
+    "ultimatetransport:energy_cell_2",
+    "ultimatetransport:energy_cell_3",
+    "ultimatetransport:energy_cell_4",
+    "ultimatetransport:energy_cell_5",
+    "ultimatetransport:energy_cell_6",
+    "ultimatetransport:energy_cell_7",
+    "ultimatetransport:energy_cell_8",
+    "ultimatetransport:energy_cell_9",
+    "ultimatetransport:energy_cell_10",
+    "ultimatetransport:energy_cell_11",
+    "ultimatetransport:creative_energy_cell",
+    "ultimatetransport:fuel_generator",
+    "ultimatetransport:lava_generator",
+    "ultimatetransport:solar_generator",
+    "ultimatetransport:nether_star_generator"
+  ]
+}

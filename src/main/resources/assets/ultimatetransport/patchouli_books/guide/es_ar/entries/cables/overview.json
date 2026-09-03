@@ -1,0 +1,37 @@
+{
+  "name": "Qué es un cable",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:energy_cable",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Una red de cables mueve su carga en el instante en que se lo piden. Dentro de un cable no se guarda nada: lo que la red no puede colocar en ese tick se rechaza, así que un tendido nunca es un búfer escondido.$(br2)Hay un cable por tipo de carga, más uno universal que se une a todas las redes que toca."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ultimatetransport:energy_cable",
+      "text": "Forge Energy. Funciona con todo lo que lo hable, incluidas las máquinas de Mekanism y Flux Networks."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ultimatetransport:fluid_cable",
+      "text": "Cualquier manejador de fluidos de NeoForge."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ultimatetransport:item_cable",
+      "text": "Cualquier manejador de objetos de NeoForge."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ultimatetransport:universal_cable",
+      "text": "Los lleva todos a la vez, y hace de puente entre redes de distinto tipo."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:energy_cable",
+      "recipe2": "ultimatetransport:item_cable"
+    }
+  ]
+}

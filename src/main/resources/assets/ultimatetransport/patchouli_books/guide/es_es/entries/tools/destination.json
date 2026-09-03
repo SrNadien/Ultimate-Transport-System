@@ -1,0 +1,20 @@
+{
+  "name": "Herramienta de destino",
+  "category": "ultimatetransport:tools",
+  "icon": "ultimatetransport:destination_tool",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Clic derecho en la cara de un bloque para grabarla. La herramienta recuerda la posición y el lado, y te los enseña en su descripción.$(br2)Luego abre una regla de filtro y haz clic en su ranura de destino con la herramienta en la mano. Lo que esa regla acepte irá a esa cara y a ninguna otra."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Una misma herramienta se puede reapuntar las veces que quieras; grabar una cara nueva simplemente sustituye la anterior.$(br2)Hacer clic en la ranura de destino con la mano vacía quita la fijación, y la regla vuelve a mandar lo suyo a donde la red quiera."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:destination_tool"
+    }
+  ]
+}

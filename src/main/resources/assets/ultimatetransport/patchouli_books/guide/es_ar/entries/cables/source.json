@@ -1,0 +1,22 @@
+{
+  "name": "Tubería de maná",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:source_cable",
+  "sortnum": 9,
+  "flag": "mod:ars_nouveau",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Con $(o)Ars Nouveau$() instalado, este cable mueve source. Se comporta igual que el de energía: poné una cara en $(o)extraer$() contra un tarro de source o un sourcelink, poné el otro extremo en $(o)insertar$() contra lo que haya que alimentar, y fluye.$(br2)Sin Ars Nouveau no existe siquiera."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Ritmos",
+      "text": "El source es mucho más escaso que la energía, así que las mejoras lo mueven cien veces más despacio que el FE. Con una mejora básica basta para mantener un aparato; con una ultimate mueves un taller entero.$(br2)Los filtros no tienen nada que comparar aquí, así que una tubería de maná los ignora."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:source_cable"
+    }
+  ]
+}

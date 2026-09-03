@@ -1,0 +1,22 @@
+{
+  "name": "Mana Cable",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:source_cable",
+  "sortnum": 9,
+  "flag": "mod:ars_nouveau",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "With $(o)Ars Nouveau$() installed, this cable moves source. It behaves exactly like the energy cable: set a face to $(o)extract$() against a source jar or a sourcelink, set the far end to $(o)insert$() against whatever needs feeding, and it flows.$(br2)Without Ars Nouveau it does not exist at all."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Rates",
+      "text": "Source is far scarcer than power, so the upgrades move it a hundred times more slowly than they move FE. A basic upgrade is enough to keep a single apparatus fed; an ultimate one will run a whole workshop.$(br2)Filters have nothing to match on here, so a mana cable ignores them."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:source_cable"
+    }
+  ]
+}

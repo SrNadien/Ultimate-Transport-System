@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "ultimatetransport:energy_cell_3"
+    },
+    "M": {
+      "item": "minecraft:redstone_block"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "RMR",
+    "MCM",
+    "RMR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultimatetransport:energy_cell_4"
+  }
+}

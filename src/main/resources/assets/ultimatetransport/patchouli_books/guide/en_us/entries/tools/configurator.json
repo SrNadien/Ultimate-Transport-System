@@ -1,0 +1,26 @@
+{
+  "name": "Configurator",
+  "category": "ultimatetransport:tools",
+  "icon": "ultimatetransport:configurator",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The tool you point at everything in this mod. It has four modes, and $(o)sneak$() and right-click in the air steps between them. The tool takes the colour of the mode it is set to, so you can see which one you are on."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Configure",
+      "text": "The default mode, and the one you will spend the most time in.$(br2)On a $(o)cable face$(): flips it between insert and extract. Only faces touching a machine have a mode at all.$(br)On an $(o)energy cell$(): steps that face through disabled, input, output and both.$(br2)It also pulls a facade back off a covered face."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Clear, Rotate, Wrench",
+      "text": "$(o)Clear$() puts a face straight back to its resting state, which beats cycling round to it.$(br2)$(o)Rotate$() turns a block a quarter turn around the face you clicked, for the pieces whose facing matters.$(br2)$(o)Wrench$() takes the block back into your hand with everything it was carrying: a cable keeps its upgrades and facades, a cell keeps its charge. Sneaking and right-clicking does this in any mode."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:configurator"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Celdas de energía",
+  "description": "Doce escalones de almacenamiento, de un millón a sin fin.",
+  "icon": "ultimatetransport:energy_cell_5",
+  "sortnum": 3
+}

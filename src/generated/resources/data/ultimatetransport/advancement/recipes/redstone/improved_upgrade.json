@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_below": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ultimatetransport:basic_upgrade"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ultimatetransport:improved_upgrade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_below"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ultimatetransport:improved_upgrade"
+    ]
+  }
+}

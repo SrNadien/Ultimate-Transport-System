@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "ultimatetransport:tube_up"
+    },
+    {
+      "item": "ultimatetransport:tube_up"
+    },
+    {
+      "item": "ultimatetransport:tube_up"
+    },
+    {
+      "item": "ultimatetransport:tube_up"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "ultimatetransport:tube_north"
+  }
+}

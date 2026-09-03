@@ -1,0 +1,16 @@
+{
+  "name": "Nether Star Generator",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:nether_star_generator",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The end of the ladder. One nether star runs it for $(o)20,000 ticks$() at $(o)2,000 FE/t$(), which is 40 million FE from a single star.$(br2)Its buffer holds 4,000,000 FE and it gives out up to 20,000 FE/t, enough to keep a run of ultimate cables fed on its own."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:nether_star_generator"
+    }
+  ]
+}

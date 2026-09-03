@@ -1,0 +1,244 @@
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.143'
+}
+
+version = "${mcversion}-${mod_version}-${tag_lanzador}"
+group = "${group}"
+base {
+    archivesName = "${mod_named}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = "${neoversion}"
+
+    parchment {
+        minecraftVersion = "${parchment_minecraft}"
+        mappingsVersion = "${parchment_mappings}"
+    }
+
+    runs {
+        client {
+            client()
+            // Straight into the test world instead of the title screen. Point it somewhere else with
+            // -Put_world="Other World", or at nothing to get the menu back.
+            def world = findProperty('ut_world') ?: 'New World'
+            if (world) {
+                programArguments.addAll '--quickPlaySingleplayer', world.toString()
+            }
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        data {
+            data()
+            programArguments.addAll '--mod', "${modid}", '--all',
+                    '--output', file('src/generated/resources/').getAbsolutePath(),
+                    '--existing', file('src/main/resources/').getAbsolutePath()
+        }
+        configureEach {
+            logLevel = org.slf4j.event.Level.INFO
+            gameDirectory = file("run-${mcversion}")
+        }
+    }
+
+    mods {
+        "${modid}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+    exclude '.cache'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "BlameJared"
+        url = "https://maven.blamejared.com"
+        content { includeGroup "mezz.jei" }
+    }
+    maven {
+        name = 'Modmaven'
+        url = 'https://modmaven.dev'
+        content { includeGroup 'mekanism' }
+    }
+    maven {
+        name = "FTB"
+        url = "https://maven.ftb.dev/releases"
+        content { includeGroup "dev.ftb.mods" }
+    }
+    maven {
+        name = "GeckoLib"
+        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        content { includeGroup "software.bernie.geckolib" }
+    }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content { includeGroup "maven.modrinth" }
+    }
+    // Flux Networks is only published on CurseForge.
+    maven {
+        name = "CurseMaven"
+        url = "https://cursemaven.com"
+        content { includeGroup "curse.maven" }
+    }
+}
+
+// Ender IO ships endercore and its conduit module as JarJar entries. A dev runtime does not unpack
+// those, so they are pulled out of the artifact into the build directory and put on the run
+// classpath from there; nothing is copied into the repository.
+def enderIoArtifact = configurations.detachedConfiguration(
+        dependencies.create("maven.modrinth:enderio:${enderio_version}") { transitive = false })
+def nestedModsDir = layout.buildDirectory.dir("nestedMods")
+def extractNestedMods = tasks.register("extractNestedMods", Copy) {
+    from(provider { zipTree(enderIoArtifact.singleFile) }) {
+        include "META-INF/jarjar/*.jar"
+        eachFile { it.path = it.name }
+    }
+    includeEmptyDirs = false
+    into nestedModsDir
+}
+def nestedMods = files(extractNestedMods.map { it.outputs.files.asFileTree })
+
+tasks.named("jar") {
+    from(file("LICENSE")) { into "META-INF" }
+    from(file("NOTICE")) { into "META-INF" }
+    from(file("THIRD_PARTY_LICENSES.md")) { into "META-INF" }
+    from(file("LICENSES/LGPL-3.0.txt")) { into "META-INF/licenses" }
+}
+
+dependencies {
+    // Mekanism -- optional. Only the gas cable and its chemical handling touch its classes,
+    // and every one of those call sites is behind a mod-loaded check.
+    compileOnly("mekanism:Mekanism:${mekanism_version}") { transitive = false }
+
+    // Flux Networks -- optional. Only the wireless energy bridge touches its classes.
+    compileOnly("curse.maven:flux-networks-248020:${fluxnetworks_file}") { transitive = false }
+
+    // Jade -- optional, for the in-world readouts.
+    compileOnly("maven.modrinth:jade:${jade_version}") { transitive = false }
+
+    // JEI -- optional, for showing the upgrade and cell recipes.
+    compileOnly "mezz.jei:jei-${mcversion}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${mcversion}-neoforge-api:${jei_version}"
+
+    // Ars Nouveau -- optional. Only the source cable touches its classes.
+    compileOnly("maven.modrinth:ars-nouveau:${arsnouveau_version}") { transitive = false }
+
+    // Ender IO -- optional. Only the facade bridge touches its classes.
+    compileOnly("maven.modrinth:enderio:${enderio_version}") { transitive = false }
+
+    // KubeJS -- optional. Only the recipe schema plugin touches its classes.
+    compileOnly("maven.modrinth:kubejs:${kubejs_version}") { transitive = false }
+    compileOnly("maven.modrinth:rhino:${rhino_version}") { transitive = false }
+
+    // Ore Excavation -- optional. Only the chain-mining guard touches its classes.
+    compileOnly("curse.maven:ore-excavation-250898:${oreexcavation_file}") { transitive = false }
+
+    // Patchouli carries the guide book, which is not optional content.
+    compileOnly("maven.modrinth:patchouli:${patchouli_version}") { transitive = false }
+    runtimeOnly("maven.modrinth:patchouli:${patchouli_version}") { transitive = false }
+
+    runtimeOnly("mekanism:Mekanism:${mekanism_version}") { transitive = false }
+    runtimeOnly("curse.maven:flux-networks-248020:${fluxnetworks_file}") { transitive = false }
+    runtimeOnly "mezz.jei:jei-${mcversion}-neoforge:${jei_version}"
+    runtimeOnly("maven.modrinth:jade:${jade_version}") { transitive = false }
+    runtimeOnly("curse.maven:ore-excavation-250898:${oreexcavation_file}") { transitive = false }
+    runtimeOnly("curse.maven:camol-1214396:${camol_file}") { transitive = false }
+
+    runtimeOnly("maven.modrinth:ars-nouveau:${arsnouveau_version}") { transitive = false }
+    runtimeOnly("maven.modrinth:curios:${curios_version}") { transitive = false }
+    runtimeOnly("software.bernie.geckolib:geckolib-neoforge-${mcversion}:${geckolib_version}") { transitive = false }
+
+    runtimeOnly("maven.modrinth:enderio:${enderio_version}") { transitive = false }
+    runtimeOnly nestedMods
+
+    runtimeOnly("maven.modrinth:architectury-api:${architectury_version}") { transitive = false }
+    runtimeOnly("maven.modrinth:kubejs:${kubejs_version}") { transitive = false }
+    runtimeOnly("maven.modrinth:rhino:${rhino_version}") { transitive = false }
+    runtimeOnly("dev.ftb.mods:ftb-library-neoforge:${ftblibrary_version}") { transitive = false }
+    runtimeOnly("dev.ftb.mods:ftb-ultimine-neoforge:${ftbultimine_version}") { transitive = false }
+
+    runtimeOnly("maven.modrinth:ae2:${ae2_version}") { transitive = false }
+    runtimeOnly("maven.modrinth:guideme:${guideme_version}") { transitive = false }
+    runtimeOnly("curse.maven:re-avaritia-623969:${reavaritia_file}") { transitive = false }
+    runtimeOnly("curse.maven:ultimate-avaritia-additions-1671245:${ultimateavaritia_file}") { transitive = false }
+}
+
+test {
+    enabled = false
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : base.archivesName.get(),
+                "Specification-Vendor"    : "${author}",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : base.archivesName.get(),
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "${author}",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            mcversion              : mcversion,
+            mod_version            : mod_version,
+            modid                  : modid,
+            author                 : author,
+            mod_named              : mod_named,
+            mod_name               : mod_name,
+            tag_lanzador           : tag_lanzador,
+            mod_description        : mod_description,
+            license                : license,
+            neoversion             : neoversion,
+            neo_version_range      : neo_version_range,
+            loader_version         : loader_version,
+            issue_tracker          : issue_tracker,
+            minecraft_version_range: minecraft_version_range,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.getRelease().set(21)
+}

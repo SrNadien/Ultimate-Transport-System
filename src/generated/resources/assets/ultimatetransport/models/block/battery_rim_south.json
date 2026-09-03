@@ -1,0 +1,64 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "cullface": "down",
+          "texture": "#rim",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        },
+        "east": {
+          "cullface": "east",
+          "texture": "#rim",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        },
+        "up": {
+          "cullface": "up",
+          "texture": "#rim",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        },
+        "west": {
+          "cullface": "west",
+          "texture": "#rim",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        }
+      },
+      "from": [
+        -0.02,
+        -0.02,
+        14
+      ],
+      "to": [
+        16.02,
+        16.02,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:solid",
+  "textures": {
+    "particle": "ultimatetransport:block/battery_edge",
+    "rim": "ultimatetransport:block/battery_edge"
+  }
+}

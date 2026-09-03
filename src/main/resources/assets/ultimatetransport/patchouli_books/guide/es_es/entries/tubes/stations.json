@@ -1,0 +1,26 @@
+{
+  "name": "Estaciones de tubo",
+  "category": "ultimatetransport:tubes",
+  "icon": "ultimatetransport:station",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Una estación mide dos bloques de alto y está hueca: es la puerta por la que entras y por la que sales. Queda a ras con el tubo que tenga encima o debajo.$(br2)Ponte sobre una estación con un tubo hacia $(o)arriba$() encima y te sube a la red. Pon otra al final del tramo y aterrizas dentro en vez de salir despedido."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Bajarse antes",
+      "text": "Pon estaciones seguidas a lo largo de un tramo y eliges dónde parar.$(br2)$(o)Agáchate$() al llegar a una y el suelo vuelve a aparecer bajo tus pies, así que te bajas ahí en vez de llegar al final. Suelta y sigues.$(br2)Romper cualquiera de las dos mitades se lleva la otra."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Lo que arrastra",
+      "text": "No solo te lleva a ti. Los mobs que se metan y los objetos tirados en el suelo de la estación entran también, así que una estación con un tubo hacia arriba sirve de aspiradora para lo que caiga dentro.$(br2)La variante horizontal mide dos bloques de largo en vez de dos de alto, para entrar y salir de un tramo a nivel. No tiene objeto propio: es en lo que se convierte una estación construida así."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:station"
+    }
+  ]
+}

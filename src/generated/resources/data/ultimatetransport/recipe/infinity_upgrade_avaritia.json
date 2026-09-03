@@ -1,0 +1,31 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ultimateavaritiaadditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "avaritia"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "avaritia:infinity"
+    },
+    "I": {
+      "item": "avaritia:infinity_catalyst"
+    }
+  },
+  "pattern": [
+    "III",
+    "ICI",
+    "III"
+  ],
+  "result": {
+    "count": 4,
+    "id": "ultimatetransport:infinity_upgrade"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Fachadas",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:facade",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Una fachada esconde un cable detrás de cualquier bloque completo.$(br2)Usá una fachada en blanco sobre el bloque que quieras copiar. El bloque $(o)no$() se gasta: te llevas una fachada de él. Luego usá esa fachada en una cara del cable."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "La tapa es un panel real de dos píxeles, no una pegatina: se le ve el canto si miras a lo largo de la cara, y conserva la textura, el tinte y la transparencia del bloque que copia.$(br2)Donde un brazo del cable atraviesa esa cara, el panel se convierte en un marco con el hueco del brazo.$(br2)El configurador la vuelve a quitar, y romper el cable devuelve todas las fachadas y mejoras que llevaba."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:facade"
+    }
+  ]
+}

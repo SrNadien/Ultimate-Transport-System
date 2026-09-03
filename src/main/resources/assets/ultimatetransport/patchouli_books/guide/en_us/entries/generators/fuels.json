@@ -1,0 +1,27 @@
+{
+  "name": "Adding your own fuels",
+  "category": "ultimatetransport:generators",
+  "icon": "minecraft:writable_book",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "What a generator burns is a recipe, so a datapack can add to it or replace it. You do not need a mod, and you do not need KubeJS.$(br2)Put a file in your datapack at $(o)data/<your pack>/recipe/anything.json$() and it works the moment the pack loads. It shows up in JEI too."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The file",
+      "text": "$(#555){$(br)  \"type\": \"ultimatetransport:generator_fuel\",$(br)  \"generator\": \"fuel_generator\",$(br)  \"fuel\": { \"item\": \"minecraft:coal\" },$(br)  \"burn_time\": 1600$(br)}$()$(br2)$(l)generator$(): fuel_generator, lava_generator or nether_star_generator.$(br)$(l)fuel$(): any ingredient, so $(#555){ \"tag\": \"c:coals\" }$() works.$(br)$(l)burn_time$(): ticks it burns for."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Changing the output",
+      "text": "Add $(l)rate$() to make that one fuel produce a different amount:$(br2)$(#555)\"rate\": 500$()$(br2)Leave it out and the generator's own rate is used, which is what you usually want. The rate itself is in the config, under $(o)generators$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "With KubeJS",
+      "text": "This mod ships a KubeJS plugin, so the type has a proper builder. No $(o)event.custom$() needed:$(br2)$(#555)ServerEvents.recipes(event => {$(br)  event.recipes.ultimatetransport$(br)    .generator_fuel($(br)      'lava_generator',$(br)      'minecraft:magma_block',$(br)      700)$(br)})$()$(br2)The fourth argument is the optional rate."
+    }
+  ]
+}

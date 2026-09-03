@@ -1,0 +1,27 @@
+{
+  "name": "Origins and settings",
+  "category": "ultimatetransport:tubes",
+  "icon": "minecraft:writable_book",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The tubes and stations come from $(o)Tube Transport System$(), written by Alz454 (polyrobot) for 1.7.10 and carried to 1.21.1 by xy.$(br2)They behave the way they always did. What follows is where this version differs from the original, and the one setting it has."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Speed",
+      "text": "$(l)MaxTubeSpeed$() caps how fast anything travels through a tube. Default $(o)0.5$(), range 0.0 to 10.0.$(br2)Raise it for long-distance networks. Push it high and you will outrun chunk loading.$(br2)It lives in $(o)config/ultimatetransport-common.toml$() now, not in the old .cfg file."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What changed",
+      "text": "The undirected tube has its own greyed-out item texture, so it is not mistaken for one that points somewhere, and its tooltip says it faces the side you place it on.$(br2)No walking head bob and no footstep sounds while you ride.$(br2)Tubes and stations draw in the cutout pass, so they no longer paint over another mod's sky or clouds."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "What changed",
+      "text": "Two tubes of different directions meeting no longer fight over the face they share.$(br2)The 1.7.10 in-game update notifier was dropped.$(br2)The held-item ghost preview, the faint tube outline shown before you place one, was not carried over."
+    }
+  ]
+}

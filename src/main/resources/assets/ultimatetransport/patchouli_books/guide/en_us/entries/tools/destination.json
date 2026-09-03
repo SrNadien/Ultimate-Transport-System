@@ -1,0 +1,20 @@
+{
+  "name": "Destination Tool",
+  "category": "ultimatetransport:tools",
+  "icon": "ultimatetransport:destination_tool",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Right-click the face of a block to record it. The tool remembers the position and the side, and shows them in its tooltip.$(br2)Then open a filter rule and click its destination slot while holding the tool. Whatever that rule matches will go to that face and nowhere else."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "One tool can be re-pointed as many times as you like; recording a new face simply replaces the old one.$(br2)Clicking the destination slot with an empty hand clears the pin, and the rule goes back to sending its matches wherever the network wants them."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:destination_tool"
+    }
+  ]
+}

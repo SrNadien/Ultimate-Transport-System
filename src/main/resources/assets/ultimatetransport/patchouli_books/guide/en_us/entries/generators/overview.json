@@ -1,0 +1,17 @@
+{
+  "name": "Making Power",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:fuel_generator",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Every generator works the same way: it fills a buffer, then pushes that buffer into anything next to it that will take power. Put one against an energy cable or an energy cell and it feeds it without any configuration at all.$(br2)Right-click one to see how full it is and how fast it is running."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Reading the screen",
+      "text": "The long bar is the buffer. The small square beside the slot is the burn gauge: it empties as the current fuel is used up, the way a furnace flame does.$(br2)A running generator lights its front face, so you can see a bank working from across the room."
+    }
+  ]
+}

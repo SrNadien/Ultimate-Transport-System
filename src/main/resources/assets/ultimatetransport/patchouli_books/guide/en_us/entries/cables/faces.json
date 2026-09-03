@@ -1,0 +1,28 @@
+{
+  "name": "Configuring a face",
+  "category": "ultimatetransport:cables",
+  "icon": "ultimatetransport:configurator",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Two modes",
+      "text": "A cable only has settings on the faces that touch something it can move cargo through. The rest of a run is plumbing: cables join each other on their own, and there is nothing to choose.$(br2)Those working faces are one of two things.$(br)$(a)Insert$(): the network delivers into the block here. This is what a face starts as.$(br)$(c)Extract$(): the cable pulls out of the block here."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Changing it",
+      "text": "Right-click a working face with the $(l:tools/configurator)Configurator$(/l) to flip it between the two.$(br2)A face set to extract wears an orange collar, so you can see where a network is drawing from without opening anything. Insert is left unmarked on purpose: nearly every face touching a machine is an insert face, and marking them all would say nothing."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The face screen",
+      "text": "Right-click a working face with an $(o)empty hand$() to open its settings.$(br2)Down the left are three buttons: redstone mode, distribution mode, and whether the filter is a whitelist or a blacklist.$(br2)The big panel is the list of filter rules, with Add, Edit and Remove under it. The slot at the bottom left takes an $(l:cables/upgrades)Upgrade$(/l)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Distribution",
+      "text": "One extracting face has to decide who gets what.$(br2)$(o)Nearest first$(): fill the closest destination, then the next.$(br)$(o)Furthest first$(): the other way round.$(br)$(o)Round robin$(): an even split that resumes where it left off.$(br)$(o)Random$(): pick one each time.$(br2)Redstone mode decides whether the face runs at all: ignore redstone, off when powered, on when powered, or always off."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Tube stations",
+  "category": "ultimatetransport:tubes",
+  "icon": "ultimatetransport:station",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A station is two blocks tall and hollow: the doorway you step into, and where you step out again. It sits flush against the tube above or below it.$(br2)Stand on a station with a tube going $(o)up$() over it and it lifts you into the network. Put one at the far end of the run and you land in it instead of being thrown out."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Getting off early",
+      "text": "Put stations in series along a run and you can choose where to stop.$(br2)$(o)Sneak$() as you reach one and the floor comes back under you, so you get off there instead of riding to the end. Let go and you carry on.$(br2)Breaking either half of a station takes the other with it."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The horizontal station",
+      "text": "The sideways variant is two blocks long instead of two tall, for getting in and out of a level run.$(br2)It has no item of its own: it is what a station becomes when you build it that way."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:station"
+    }
+  ]
+}

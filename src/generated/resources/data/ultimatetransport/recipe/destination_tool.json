@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": {
+      "tag": "minecraft:buttons"
+    },
+    "G": {
+      "tag": "c:glass_panes"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "R": {
+      "tag": "c:dusts/redstone"
+    }
+  },
+  "pattern": [
+    "III",
+    "RGR",
+    "IBI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultimatetransport:destination_tool"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "E": {
+      "item": "ultimatetransport:energy_cable"
+    },
+    "F": {
+      "item": "ultimatetransport:fluid_cable"
+    },
+    "I": {
+      "item": "ultimatetransport:item_cable"
+    },
+    "M": {
+      "tag": "c:ingots/iron"
+    },
+    "R": {
+      "tag": "c:storage_blocks/redstone"
+    }
+  },
+  "pattern": [
+    "IEF",
+    "MRM",
+    "IEF"
+  ],
+  "result": {
+    "count": 6,
+    "id": "ultimatetransport:universal_cable"
+  }
+}

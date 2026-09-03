@@ -1,0 +1,22 @@
+{
+  "name": "The cell screen",
+  "category": "ultimatetransport:cells",
+  "icon": "ultimatetransport:energy_cell_10",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Right-click a cell with an empty hand.$(br2)The bar across the top is the charge, and under it are the real numbers, which matters above tier 6: past that a cell holds more than the energy capability can report, so the number on screen is the only honest one."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The two slots",
+      "text": "Beside the bar are two slots.$(br2)The $(o)left$() one is charged $(o)from$() the cell: drop a drill or a battery in and it fills.$(br2)The $(o)right$() one is drained $(o)into$() the cell: drop a full battery in and the cell takes its power."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Side configuration",
+      "text": "The six squares in the middle are the cell unfolded: top above, the four sides across, bottom below.$(br2)Click one to step that face through $(6)disabled$(), $(a)input only$(), $(c)output only$() and $(b)both$(). The colour is the setting; the letter only says which face it is.$(br2)Faces default to both."
+    }
+  ]
+}

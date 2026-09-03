@@ -1,0 +1,22 @@
+{
+  "name": "La pantalla de la celda",
+  "category": "ultimatetransport:cells",
+  "icon": "ultimatetransport:energy_cell_10",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Clic derecho en una celda con la mano vacía.$(br2)La barra de arriba es la carga, y debajo van los números reales, que importan a partir del nivel 6: pasado ese punto una celda guarda más de lo que la capacidad de energía puede declarar, así que el número de la pantalla es el único honesto."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Las dos ranuras",
+      "text": "Al lado de la barra hay dos ranuras.$(br2)La de la $(o)izquierda$() se carga $(o)desde$() la celda: metí un taladro o una batería y se llena.$(br2)La de la $(o)derecha$() se vacía $(o)dentro$() de la celda: metí una batería llena y la celda le quita la energía."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Configuración de caras",
+      "text": "Los seis cuadrados del centro son la celda desplegada: arriba la de encima, en fila las cuatro laterales, debajo la de abajo.$(br2)Hacé clic en una para pasar esa cara por $(6)desactivada$(), $(a)solo entrada$(), $(c)solo salida$() y $(b)ambas$(). El color es el ajuste; la letra solo dice qué cara es.$(br2)Por defecto todas están en ambas."
+    }
+  ]
+}

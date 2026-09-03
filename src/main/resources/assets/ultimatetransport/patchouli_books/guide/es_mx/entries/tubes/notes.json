@@ -1,0 +1,27 @@
+{
+  "name": "Origen y ajustes",
+  "category": "ultimatetransport:tubes",
+  "icon": "minecraft:writable_book",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Los tubos y las estaciones vienen de $(o)Tube Transport System$(), escrito por Alz454 (polyrobot) para la 1.7.10 y traído a la 1.21.1 por xy.$(br2)Se comportan como siempre lo hicieron. Lo que sigue es en qué se diferencia esta versión del original, y el único ajuste que tiene."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Velocidad",
+      "text": "$(l)MaxTubeSpeed$() limita a qué velocidad viaja cualquier cosa por un tubo. Por defecto $(o)0.5$(), de 0.0 a 10.0.$(br2)Súbelo para redes de larga distancia. Si lo pones muy alto, adelantarás a la carga de chunks.$(br2)Ahora vive en $(o)config/ultimatetransport-common.toml$(), no en el .cfg antiguo."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Qué cambió",
+      "text": "El tubo sin dirección tiene su propia textura de objeto en gris, para que no se confunda con uno que apunta a algún sitio, y su descripción dice que mira hacia la cara donde lo colocas.$(br2)Ni balanceo de cabeza ni sonido de pasos mientras viajas.$(br2)Tubos y estaciones se dibujan en la capa cutout, así que ya no pintan encima del cielo ni de las nubes de otros mods."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Qué cambió",
+      "text": "Dos tubos de distinta dirección que se tocan ya no se pelean por la cara que comparten.$(br2)Se quitó el aviso de actualización dentro del juego que traía la 1.7.10.$(br2)La vista previa fantasma del objeto en la mano, ese contorno tenue del tubo antes de colocarlo, no se portó."
+    }
+  ]
+}

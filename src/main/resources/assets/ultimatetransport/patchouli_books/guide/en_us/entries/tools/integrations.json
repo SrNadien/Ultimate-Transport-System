@@ -1,0 +1,23 @@
+{
+  "name": "Other mods",
+  "category": "ultimatetransport:tools",
+  "icon": "minecraft:comparator",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Mekanism",
+      "text": "With Mekanism installed a fifth cable appears: the $(6)Gas Cable$(), built on Mekanism's chemical API. It configures exactly like the others, and its filter rules take chemical ids and chemical tags.$(br2)Without Mekanism the cable does not exist at all."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Flux Networks",
+      "text": "Plugs and points already reach this mod through Forge Energy with nothing added.$(br2)What the integration adds is Flux's own long-precision interface on the cells, the cell item and the energy cable, so a tier 10 cell in a Flux network moves its real capacity instead of a figure clamped to two billion."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Jade and JEI",
+      "text": "$(o)Jade$() shows what the face you are pointing at is doing, what upgrade it holds, how many rules it has, and the real charge of a cell.$(br2)$(o)JEI$() carries an information page for every block here, and lets you drag an ingredient straight out of it onto a filter rule."
+    }
+  ]
+}

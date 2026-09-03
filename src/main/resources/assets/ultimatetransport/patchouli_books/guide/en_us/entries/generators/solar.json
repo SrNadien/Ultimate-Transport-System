@@ -1,0 +1,16 @@
+{
+  "name": "Solar Generator",
+  "category": "ultimatetransport:generators",
+  "icon": "ultimatetransport:solar_generator",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Free power, and not much of it: $(o)12 FE/t$() while it is daytime, not raining, and the block above it can see the sky.$(br2)It has no fuel slot, because it has nothing to eat. Put a row of them on a roof and run a cable back to a cell, and they will fill it over a few days.$(br2)Its buffer holds 40,000 FE and it gives out up to 200 FE/t."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:solar_generator"
+    }
+  ]
+}

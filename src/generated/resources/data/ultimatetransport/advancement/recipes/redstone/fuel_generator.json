@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_centre": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:furnace"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ultimatetransport:fuel_generator"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_centre"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ultimatetransport:fuel_generator"
+    ]
+  }
+}

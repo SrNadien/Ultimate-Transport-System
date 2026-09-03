@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "tag": "c:ingots/netherite"
+    },
+    "E": {
+      "tag": "c:storage_blocks/redstone"
+    },
+    "U": {
+      "item": "ultimatetransport:advanced_upgrade"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "EUE",
+    "CEC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultimatetransport:ultimate_upgrade"
+  }
+}

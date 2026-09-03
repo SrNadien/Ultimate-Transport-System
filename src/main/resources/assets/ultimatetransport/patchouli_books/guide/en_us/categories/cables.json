@@ -1,0 +1,6 @@
+{
+  "name": "Cables",
+  "description": "Instant transfer along a network, configured face by face.",
+  "icon": "ultimatetransport:energy_cable",
+  "sortnum": 0
+}

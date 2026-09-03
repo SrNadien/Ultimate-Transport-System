@@ -1,0 +1,31 @@
+{
+  "name": "Configurador",
+  "category": "ultimatetransport:tools",
+  "icon": "ultimatetransport:configurator",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "La herramienta que le apuntas a todo en este mod. Tiene cinco modos, y $(o)agachado$() más clic derecho en el aire pasa de uno a otro. La herramienta se tiñe del color del modo, así que ves en cuál estás."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Configurar",
+      "text": "El modo por defecto, y en el que pasarás más tiempo.$(br2)En una $(o)cara de cable$(): alterna entre insertar y extraer. Solo tienen modo las caras que tocan una máquina.$(br)En una $(o)celda de energía$(): pasa esa cara por desactivada, entrada, salida y ambas.$(br2)También quita una fachada de una cara cubierta."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Limpiar, Rotar, Llave",
+      "text": "$(o)Limpiar$() devuelve una cara a su estado de reposo, que es más rápido que dar la vuelta entera.$(br2)$(o)Rotar$() gira un bloque un cuarto de vuelta sobre la cara que pulsas, para las piezas a las que les importa hacia dónde miran.$(br2)$(o)Llave$() se lleva el bloque a la mano con todo lo que tuviera dentro. Agacharse y hacer clic derecho hace esto en cualquier modo, y funciona también con máquinas de otros mods."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Caras",
+      "text": "El quinto modo abre la pantalla de caras de lo que apuntes, sin tener que abrir la interfaz de la máquina.$(br2)Muestra el bloque desplegado con sus seis caras y una leyenda de los modos. Clic izquierdo para avanzar una cara, clic derecho para retroceder. Las caras que no tienen nada que configurar salen en gris."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ultimatetransport:configurator"
+    }
+  ]
+}

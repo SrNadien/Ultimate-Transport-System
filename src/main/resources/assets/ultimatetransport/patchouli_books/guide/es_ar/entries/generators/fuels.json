@@ -1,0 +1,27 @@
+{
+  "name": "Añadir tus combustibles",
+  "category": "ultimatetransport:generators",
+  "icon": "minecraft:writable_book",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Lo que quema un generador es una receta, así que un datapack puede añadir combustibles o cambiar los que hay. No hace falta un mod, ni hace falta KubeJS.$(br2)Poné un archivo en tu datapack en $(o)data/<tu pack>/recipe/loquesea.json$() y funciona en cuanto cargue el pack. Sale en JEI también."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "El archivo",
+      "text": "$(#555){$(br)  \"type\": \"ultimatetransport:generator_fuel\",$(br)  \"generator\": \"fuel_generator\",$(br)  \"fuel\": { \"item\": \"minecraft:coal\" },$(br)  \"burn_time\": 1600$(br)}$()$(br2)$(l)generator$(): fuel_generator, lava_generator o nether_star_generator.$(br)$(l)fuel$(): cualquier ingrediente, así que $(#555){ \"tag\": \"c:coals\" }$() vale.$(br)$(l)burn_time$(): ticks que dura."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Cambiar la salida",
+      "text": "Añade $(l)rate$() para que ese combustible en concreto dé otra cantidad:$(br2)$(#555)\"rate\": 500$()$(br2)Si lo omites se usá el ritmo del propio generador, que es lo normal. Ese ritmo se cambia en la configuración, en el apartado $(o)generators$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Con KubeJS",
+      "text": "Este mod trae plugin de KubeJS, así que el tipo tiene su propio constructor. No hace falta $(o)event.custom$():$(br2)$(#555)ServerEvents.recipes(event => {$(br)  event.recipes.ultimatetransport$(br)    .generator_fuel($(br)      'lava_generator',$(br)      'minecraft:magma_block',$(br)      700)$(br)})$()$(br2)El cuarto argumento es el rate opcional."
+    }
+  ]
+}

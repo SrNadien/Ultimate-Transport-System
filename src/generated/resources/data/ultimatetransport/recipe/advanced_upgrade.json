@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "tag": "c:gems/diamond"
+    },
+    "E": {
+      "tag": "c:storage_blocks/redstone"
+    },
+    "U": {
+      "item": "ultimatetransport:improved_upgrade"
+    }
+  },
+  "pattern": [
+    "CEC",
+    "EUE",
+    "CEC"
+  ],
+  "result": {
+    "count": 1,
+    "id": "ultimatetransport:advanced_upgrade"
+  }
+}
