@@ -48,6 +48,7 @@ public final class TubeConfig {
     public static boolean suppressWalk = true;
     public static boolean lenientCulling = true;
     public static boolean placementPreview = true;
+    public static RenderPass renderPass = RenderPass.TRANSLUCENT;
 
     private TubeConfig() {
     }
@@ -69,5 +70,6 @@ public final class TubeConfig {
         suppressWalk = SUPPRESS_WALK.get();
         lenientCulling = LENIENT_CULLING.get();
         placementPreview = PLACEMENT_PREVIEW.get();
+        renderPass = RENDER_PASS.get();
     }
 }

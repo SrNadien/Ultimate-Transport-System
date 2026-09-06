@@ -25,7 +25,10 @@ public final class ConfiguratorInteractions {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void beforeBlockUse(PlayerInteractEvent.RightClickBlock event) {
-        if (!(event.getItemStack().getItem() instanceof ConfiguratorItem)) {
+        boolean ours = event.getItemStack().getItem() instanceof ConfiguratorItem;
+        boolean foreignWrench = !ours && Wrenches.isWrench(event.getItemStack())
+                && ConfiguratorItem.ourBlock(event.getLevel(), event.getPos());
+        if (!ours && !foreignWrench) {
             return;
         }
         event.setUseBlock(TriState.FALSE);
@@ -33,8 +36,11 @@ public final class ConfiguratorInteractions {
         if (event.getLevel().isClientSide) {
             return;
         }
-        InteractionResult result = ConfiguratorItem.act(new UseOnContext(
-                event.getLevel(), event.getEntity(), event.getHand(), event.getItemStack(), event.getHitVec()));
+        UseOnContext context = new UseOnContext(
+                event.getLevel(), event.getEntity(), event.getHand(), event.getItemStack(), event.getHitVec());
+        InteractionResult result = ours
+                ? ConfiguratorItem.act(context)
+                : ConfiguratorItem.wrenchOurs(context);
         event.setCanceled(true);
         event.setCancellationResult(result == InteractionResult.PASS ? InteractionResult.CONSUME : result);
     }

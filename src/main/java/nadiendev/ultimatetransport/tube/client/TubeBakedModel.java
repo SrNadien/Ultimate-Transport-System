@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import org.jetbrains.annotations.Nullable;
 
+import nadiendev.ultimatetransport.tube.TubeConfig;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -33,7 +34,18 @@ import nadiendev.ultimatetransport.tube.block.BlockTube;
  * the same rule the 1.7.10 renderer used.
  */
 public class TubeBakedModel implements IDynamicBakedModel {
-    private static final ChunkRenderTypeSet LAYERS = ChunkRenderTypeSet.of(RenderType.cutoutMipped());
+    private static final ChunkRenderTypeSet TRANSLUCENT = ChunkRenderTypeSet.of(RenderType.translucent());
+    private static final ChunkRenderTypeSet CUTOUT = ChunkRenderTypeSet.of(RenderType.cutoutMipped());
+
+    /**
+     * Glass only looks like glass in the translucent pass. Cutout throws away everything that is not
+     * fully opaque or fully clear, which turns a tinted pane into a solid wall, so the config decides
+     * and translucent is the default.
+     */
+    private static ChunkRenderTypeSet layers() {
+        return TubeConfig.renderPass == TubeConfig.RenderPass.CUTOUT ? CUTOUT : TRANSLUCENT;
+    }
+
 
     private final Function<String, TextureAtlasSprite> sprites;
 
@@ -56,7 +68,7 @@ public class TubeBakedModel implements IDynamicBakedModel {
 
     @Override
     public ChunkRenderTypeSet getRenderTypes(BlockState state, RandomSource rand, ModelData data) {
-        return LAYERS;
+        return layers();
     }
 
     @Override

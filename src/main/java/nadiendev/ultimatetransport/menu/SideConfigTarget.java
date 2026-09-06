@@ -28,6 +28,7 @@ public final class SideConfigTarget {
             new Option(CellSideMode.OUTPUT.translationKey(), CellSideMode.OUTPUT.colour()));
 
     private static final List<Option> CABLE_OPTIONS = List.of(
+            new Option(ConnectionMode.NONE.translationKey(), ConnectionMode.NONE.colour()),
             new Option(ConnectionMode.INSERT.translationKey(), ConnectionMode.INSERT.colour()),
             new Option(ConnectionMode.EXTRACT.translationKey(), ConnectionMode.EXTRACT.colour()));
 

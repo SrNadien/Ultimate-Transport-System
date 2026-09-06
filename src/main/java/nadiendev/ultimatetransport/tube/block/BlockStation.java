@@ -141,7 +141,7 @@ public class BlockStation extends Block implements IConnectable {
             BlockPos above = pos.above();
             if (entity.isShiftKeyDown() && Utilities.tubeDirection(level, above) == Direction.UP.get3DDataValue()) {
                 shape = Shapes.or(shape, Utilities.getCollisionBoxPart(Direction.UP));
-            } else if (!Utilities.isTube(level, above)) {
+            } else if (!Utilities.liftsInto(level, above)) {
                 shape = Shapes.or(shape, Utilities.getCollisionBoxPart(Direction.UP));
             }
         } else if (entity.getY() >= pos.getY()) {
@@ -190,7 +190,7 @@ public class BlockStation extends Block implements IConnectable {
         if (!state.getValue(TOP) && !level.getBlockState(pos.above()).is(this)) {
             return null;
         }
-        return Utilities.isTube(level, above) ? Direction.UP : null;
+        return Utilities.liftsInto(level, above) ? Direction.UP : null;
     }
 
     @Override

@@ -452,8 +452,18 @@ public class CableBlockEntity extends BlockEntity {
                 && canReach(direction);
     }
 
+    /** True when every cargo this cable carries is set to leave that face alone. */
+    public boolean idle(Direction direction) {
+        for (TransferType cargo : type().carried()) {
+            if (config(direction, cargo).mode() != ConnectionMode.NONE) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean linked(Direction direction) {
-        return cableNeighbour(direction) || container(direction);
+        return cableNeighbour(direction) || (container(direction) && !idle(direction));
     }
 
     public boolean canReach(Direction direction) {

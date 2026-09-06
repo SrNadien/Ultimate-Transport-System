@@ -165,6 +165,7 @@
   "ultimatetransport.configurator_mode.wrench": "Wrench",
   "ultimatetransport.connection_mode.extract": "Extract",
   "ultimatetransport.connection_mode.insert": "Insert",
+  "ultimatetransport.connection_mode.none": "Disconnected",
   "ultimatetransport.direction.down": "Bottom",
   "ultimatetransport.direction.east": "East",
   "ultimatetransport.direction.north": "North",

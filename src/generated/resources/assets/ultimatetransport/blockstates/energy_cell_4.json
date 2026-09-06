@@ -74,6 +74,14 @@
     },
     {
       "apply": {
+        "model": "ultimatetransport:block/battery_rim_north"
+      },
+      "when": {
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
         "model": "ultimatetransport:block/battery_rim_up"
       },
       "when": {
@@ -82,18 +90,10 @@
     },
     {
       "apply": {
-        "model": "ultimatetransport:block/battery_rim_east"
+        "model": "ultimatetransport:block/battery_rim_south"
       },
       "when": {
-        "east": "false"
-      }
-    },
-    {
-      "apply": {
-        "model": "ultimatetransport:block/battery_rim_north"
-      },
-      "when": {
-        "north": "false"
+        "south": "false"
       }
     },
     {
@@ -114,10 +114,10 @@
     },
     {
       "apply": {
-        "model": "ultimatetransport:block/battery_rim_south"
+        "model": "ultimatetransport:block/battery_rim_east"
       },
       "when": {
-        "south": "false"
+        "east": "false"
       }
     }
   ]

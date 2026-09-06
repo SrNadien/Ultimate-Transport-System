@@ -119,4 +119,14 @@ public final class Utilities {
     public static boolean isTube(BlockGetter level, BlockPos pos) {
         return level.getBlockState(pos).is(TubeRegistration.TUBE.get());
     }
+
+    /**
+     * Whether a station may throw someone up into the tube above it. A tube pointing back down would
+     * push them straight into the station again, and the two would hand the rider back and forth for
+     * as long as they stood there, so that one case is the only one refused.
+     */
+    public static boolean liftsInto(BlockGetter level, BlockPos pos) {
+        int direction = tubeDirection(level, pos);
+        return direction >= 0 && direction != Direction.DOWN.get3DDataValue();
+    }
 }

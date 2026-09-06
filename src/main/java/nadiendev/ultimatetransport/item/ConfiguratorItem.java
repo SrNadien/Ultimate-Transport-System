@@ -123,6 +123,62 @@ public class ConfiguratorItem extends Item {
         return InteractionResult.PASS;
     }
 
+    /**
+     * What another mod's wrench does to one of our blocks: a click steps the clicked face, a sneaking
+     * click takes the block back with everything in it. Only our own blocks answer, so a wrench keeps
+     * behaving normally everywhere else.
+     */
+    public static InteractionResult wrenchOurs(UseOnContext context) {
+        Level level = context.getLevel();
+        Player player = context.getPlayer();
+        if (level.isClientSide) {
+            return InteractionResult.SUCCESS;
+        }
+        BlockPos pos = context.getClickedPos();
+        BlockState state = level.getBlockState(pos);
+        if (player == null || !isOurs(state)) {
+            return InteractionResult.PASS;
+        }
+        if (player.isShiftKeyDown()) {
+            return dismantlable(level, pos, state) ? dismantle(level, pos, state, player) : InteractionResult.PASS;
+        }
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof CableBlockEntity cable) {
+            return wrenchCable(context, level, state, cable, player);
+        }
+        if (blockEntity != null && SideConfigTarget.supports(blockEntity)) {
+            return configurate(level, pos, context.getClickedFace(), blockEntity, player,
+                    ConfiguratorMode.CONFIGURATE_ENERGY);
+        }
+        return rotate(level, pos, state, context.getClickedFace(), player);
+    }
+
+    /**
+     * A foreign wrench has no mode dial, so on a universal cable it moves every cargo at once rather
+     * than silently editing one of the five. The mod's own configurator, and the cable's own screen,
+     * are still the way to set them apart.
+     */
+    private static InteractionResult wrenchCable(UseOnContext context, Level level, BlockState state,
+                                                 CableBlockEntity cable, Player player) {
+        if (cable.type() != TransferType.UNIVERSAL) {
+            return cable(context, level, state, cable, player, ConfiguratorMode.CONFIGURATE_ITEM);
+        }
+        BlockPos pos = context.getClickedPos();
+        Direction side = CableBlock.pickSide(state, pos, context.getClickLocation(), context.getClickedFace());
+        if (!cable.container(side)) {
+            return cable(context, level, state, cable, player, ConfiguratorMode.CONFIGURATE_ITEM);
+        }
+        ConnectionMode next = cable.config(side, TransferType.ENERGY).mode().next();
+        for (TransferType cargo : cable.type().carried()) {
+            cable.setSideMode(side, cargo, next);
+        }
+        cable.onConfigChanged();
+        level.playSound(null, pos, SoundEvents.COMPARATOR_CLICK, SoundSource.BLOCKS, 0.6F,
+                next == ConnectionMode.EXTRACT ? 1.4F : 0.8F);
+        announce(player, side, next.translationKey(), next.colour());
+        return InteractionResult.CONSUME;
+    }
+
     /** A click steps the face forward and a sneaking click steps it back, either way saying where it landed. */
     private static InteractionResult configurate(Level level, BlockPos pos, Direction side,
                                           @Nullable BlockEntity blockEntity, Player player, ConfiguratorMode mode) {
@@ -252,6 +308,11 @@ public class ConfiguratorItem extends Item {
         player.displayClientMessage(Component.translatable("message.ultimatetransport.side_mode",
                 Component.translatable("ultimatetransport.direction." + side.getSerializedName()),
                 Component.translatable(key).withStyle(style -> style.withColor(colour))), true);
+    }
+
+    /** Whether a block at that spot is one of ours, for deciding if a foreign wrench should act. */
+    public static boolean ourBlock(net.minecraft.world.level.LevelAccessor level, BlockPos pos) {
+        return isOurs(level.getBlockState(pos));
     }
 
     private static boolean isOurs(BlockState state) {

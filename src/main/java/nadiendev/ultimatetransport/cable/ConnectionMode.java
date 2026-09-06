@@ -4,6 +4,8 @@ import net.minecraft.util.StringRepresentable;
 
 public enum ConnectionMode implements StringRepresentable {
 
+    /** The face is left alone: the cable does not reach for the block on it at all. */
+    NONE("none", 0x9E9E9E),
     INSERT("insert", 0x4CAF50),
     EXTRACT("extract", 0xE0752D);
 
@@ -31,14 +33,19 @@ public enum ConnectionMode implements StringRepresentable {
     }
 
     public ConnectionMode next() {
-        return this == INSERT ? EXTRACT : INSERT;
+        return VALUES[(ordinal() + 1) % VALUES.length];
     }
 
     public ConnectionMode previous() {
-        return next();
+        return VALUES[(ordinal() + VALUES.length - 1) % VALUES.length];
     }
 
     public static ConnectionMode byName(String name) {
-        return EXTRACT.name.equals(name) ? EXTRACT : INSERT;
+        for (ConnectionMode mode : VALUES) {
+            if (mode.name.equals(name)) {
+                return mode;
+            }
+        }
+        return INSERT;
     }
 }

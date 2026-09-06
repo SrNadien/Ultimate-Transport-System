@@ -87,6 +87,7 @@ public abstract class UTLanguageProvider extends LanguageProvider {
             add("ultimatetransport.transfer_type.source", "Source");
             add("ultimatetransport.transfer_type.universal", "Everything");
 
+            add("ultimatetransport.connection_mode.none", "Disconnected");
             add("ultimatetransport.connection_mode.insert", "Insert");
             add("ultimatetransport.connection_mode.extract", "Extract");
 
@@ -316,6 +317,7 @@ public abstract class UTLanguageProvider extends LanguageProvider {
             add("ultimatetransport.transfer_type.source", "Maná");
             add("ultimatetransport.transfer_type.universal", "Todo");
 
+            add("ultimatetransport.connection_mode.none", "Desconectado");
             add("ultimatetransport.connection_mode.insert", "Insertar");
             add("ultimatetransport.connection_mode.extract", "Extraer");
 
