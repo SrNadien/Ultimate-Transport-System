@@ -180,11 +180,3 @@ Every texture in this mod is generated from scratch by `tools/GenTextures.java`
 and `tools/GenGui.java`; run them with `java tools/GenTextures.java .` from the project root to
 rebuild them. The cable geometry comes from Pretty Pipez; see the license section below.
 
-## License
-
-All code and all assets are licensed under [GPLv3](LICENSE), in adherence to the license used by
-[Pretty Pipez](https://www.curseforge.com/minecraft/texture-packs/pretty-pipez) by pyrox645, from
-which the cable textures and cable models derive.
-
-[THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) lists every file that came from Pretty Pipez and
-says which of them were modified.
