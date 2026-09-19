@@ -175,8 +175,3 @@ accepts anything with a vanilla furnace burn time without a recipe at all.
 JDK 21. The dev runtime always pulls in the integration mods: Mekanism, Flux Networks, JEI, Jade,
 Patchouli, Ars Nouveau, Ender IO, Camol, Ore Excavation, FTB Ultimine, AE2 and Ultimate Avaritia
 Additions.
-
-Every texture in this mod is generated from scratch by `tools/GenTextures.java`
-and `tools/GenGui.java`; run them with `java tools/GenTextures.java .` from the project root to
-rebuild them. The cable geometry comes from Pretty Pipez; see the license section below.
-
