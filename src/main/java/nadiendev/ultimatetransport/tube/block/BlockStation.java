@@ -141,7 +141,10 @@ public class BlockStation extends Block implements IConnectable {
             BlockPos above = pos.above();
             if (entity.isShiftKeyDown() && Utilities.tubeDirection(level, above) == Direction.UP.get3DDataValue()) {
                 shape = Shapes.or(shape, Utilities.getCollisionBoxPart(Direction.UP));
-            } else if (!Utilities.liftsInto(level, above)) {
+            } else if (!Utilities.isTube(level, above)) {
+                // Any tube overhead is a way through: an up tube lifts the rider out, a down tube
+                // drops one in. Only liftsInto decides whether the station pushes, never whether
+                // the ceiling is there.
                 shape = Shapes.or(shape, Utilities.getCollisionBoxPart(Direction.UP));
             }
         } else if (entity.getY() >= pos.getY()) {

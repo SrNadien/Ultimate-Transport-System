@@ -16,12 +16,13 @@ public final class Retrieval {
     private Retrieval() {
     }
 
-    public static void energy(CableBlockEntity cable, Direction side, SideConfig config) {
+    public static boolean energy(CableBlockEntity cable, Direction side, SideConfig config) {
         IEnergyStorage destination = cable.neighbourCapability(Capabilities.EnergyStorage.BLOCK,
                 cable.getBlockPos().relative(side), side.getOpposite());
         if (destination == null || !destination.canReceive()) {
-            return;
+            return false;
         }
+        boolean carried = false;
         int budget = config.tier().energyRate();
         for (CableNetwork.Target target : cable.orderedTargets(side, config)) {
             if (budget <= 0) {
@@ -40,16 +41,19 @@ public final class Retrieval {
             if (accepted > 0) {
                 source.extractEnergy(accepted, false);
                 budget -= accepted;
+                carried = true;
             }
         }
+        return carried;
     }
 
-    public static void fluid(CableBlockEntity cable, Direction side, SideConfig config) {
+    public static boolean fluid(CableBlockEntity cable, Direction side, SideConfig config) {
         IFluidHandler destination = cable.neighbourCapability(Capabilities.FluidHandler.BLOCK,
                 cable.getBlockPos().relative(side), side.getOpposite());
         if (destination == null) {
-            return;
+            return false;
         }
+        boolean carried = false;
         int budget = config.tier().fluidRate();
         for (CableNetwork.Target target : cable.orderedTargets(side, config)) {
             if (budget <= 0) {
@@ -73,17 +77,20 @@ public final class Retrieval {
                 if (filled > 0) {
                     source.drain(drained.copyWithAmount(filled), IFluidHandler.FluidAction.EXECUTE);
                     budget -= filled;
+                    carried = true;
                 }
             }
         }
+        return carried;
     }
 
-    public static void items(CableBlockEntity cable, Direction side, SideConfig config) {
+    public static boolean items(CableBlockEntity cable, Direction side, SideConfig config) {
         IItemHandler destination = cable.neighbourCapability(Capabilities.ItemHandler.BLOCK,
                 cable.getBlockPos().relative(side), side.getOpposite());
         if (destination == null) {
-            return;
+            return false;
         }
+        boolean carried = false;
         int budget = config.tier().itemCount();
         List<CableNetwork.Target> targets = cable.orderedTargets(side, config);
         for (CableNetwork.Target target : targets) {
@@ -105,8 +112,10 @@ public final class Retrieval {
                 if (moved > 0) {
                     source.extractItem(slot, moved, false);
                     budget -= moved;
+                    carried = true;
                 }
             }
         }
+        return carried;
     }
 }

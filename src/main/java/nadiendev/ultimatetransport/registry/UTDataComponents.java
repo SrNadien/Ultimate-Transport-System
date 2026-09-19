@@ -3,6 +3,7 @@ package nadiendev.ultimatetransport.registry;
 import com.mojang.serialization.Codec;
 import nadiendev.ultimatetransport.UltimateTransport;
 import nadiendev.ultimatetransport.filter.DirectionalPosition;
+import nadiendev.ultimatetransport.filter.FilterData;
 import nadiendev.ultimatetransport.item.ConfiguratorMode;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -39,6 +40,11 @@ public final class UTDataComponents {
                     .persistent(StringRepresentable.fromEnum(() -> ConfiguratorMode.VALUES))
                     .networkSynchronized(ByteBufCodecs.idMapper(
                             id -> ConfiguratorMode.VALUES[id], ConfiguratorMode::ordinal)));
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<FilterData>> FILTER =
+            COMPONENTS.registerComponentType("filter", builder -> builder
+                    .persistent(FilterData.CODEC)
+                    .networkSynchronized(FilterData.STREAM_CODEC));
 
     private UTDataComponents() {
     }

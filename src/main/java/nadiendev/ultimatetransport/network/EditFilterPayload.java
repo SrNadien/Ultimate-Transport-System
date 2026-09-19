@@ -50,6 +50,7 @@ public record EditFilterPayload(BlockPos pos, int side, FilterEntry entry, boole
             if (!payload.entry().isBlank()) {
                 if (config.canFilter()) {
                     config.filter().put(payload.entry());
+                    config.writeFilter();
                 }
                 cable.onConfigChanged();
             }

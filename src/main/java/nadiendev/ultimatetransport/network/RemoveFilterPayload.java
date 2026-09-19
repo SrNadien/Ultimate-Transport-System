@@ -39,6 +39,7 @@ public record RemoveFilterPayload(BlockPos pos, int side, UUID id) implements Cu
             return;
         }
         config.filter().remove(payload.id());
+        config.writeFilter();
         cable.onConfigChanged();
     }
 }

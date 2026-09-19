@@ -24,24 +24,25 @@ public class ArsSourceBridge extends SourceBridge {
     }
 
     @Override
-    public void extract(CableBlockEntity cable, Direction side, SideConfig config) {
+    public boolean extract(CableBlockEntity cable, Direction side, SideConfig config) {
         Level level = cable.getLevel();
         if (level == null) {
-            return;
+            return false;
         }
         ISourceCap source = level.getCapability(ArsCapabilities.SOURCE,
                 cable.getBlockPos().relative(side), side.getOpposite());
         if (source == null || !source.canExtract()) {
-            return;
+            return false;
         }
         int available = source.extractSource(rate(config), true);
         if (available <= 0) {
-            return;
+            return false;
         }
         int moved = push(cable, side, config, available, false);
         if (moved > 0) {
             source.extractSource(moved, false);
         }
+        return moved > 0;
     }
 
     @Override

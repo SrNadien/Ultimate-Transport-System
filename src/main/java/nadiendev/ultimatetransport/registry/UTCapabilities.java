@@ -18,11 +18,7 @@ import net.minecraft.core.Direction;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
-/**
- * Cables expose the handler they carry on every connected face. That is what lets a generator or
- * another mod's pipe push into a cable instead of having to be pulled from: whatever arrives is
- * routed straight on to the network's insert faces, and anything the network cannot place is refused.
- */
+
 public final class UTCapabilities {
 
     private UTCapabilities() {
@@ -95,10 +91,11 @@ public final class UTCapabilities {
         }
     }
 
+
     private static boolean accepts(Object blockEntity, Direction side, TransferType content) {
         return side != null
                 && blockEntity instanceof CableBlockEntity cable
                 && cable.type().carries(content)
-                && cable.linked(side);
+                && (cable.cableNeighbour(side) || !cable.idle(side));
     }
 }

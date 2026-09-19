@@ -25,7 +25,8 @@ public class SourceBridge {
         return false;
     }
 
-    public void extract(CableBlockEntity cable, Direction side, SideConfig config) {
+    public boolean extract(CableBlockEntity cable, Direction side, SideConfig config) {
+        return false;
     }
 
     public int push(CableBlockEntity cable, Direction side, SideConfig config, int budget, boolean simulate) {

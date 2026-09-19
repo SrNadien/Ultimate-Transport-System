@@ -1,5 +1,6 @@
 package nadiendev.ultimatetransport.client;
 
+import nadiendev.ultimatetransport.client.cell.EnergyCellRenderer;
 import nadiendev.ultimatetransport.UltimateTransport;
 import nadiendev.ultimatetransport.item.ConfiguratorItem;
 import nadiendev.ultimatetransport.registry.UTBlockEntities;
@@ -58,6 +59,7 @@ public final class UTClient {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(UTBlockEntities.CABLE.get(), CableRenderer::new);
+        event.registerBlockEntityRenderer(UTBlockEntities.ENERGY_CELL.get(), EnergyCellRenderer::new);
     }
 
     @SubscribeEvent

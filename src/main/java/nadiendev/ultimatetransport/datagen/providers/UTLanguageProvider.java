@@ -75,6 +75,10 @@ public abstract class UTLanguageProvider extends LanguageProvider {
             add("ultimatetransport.cell_side.input", "Input");
             add("ultimatetransport.cell_side.output", "Output");
             add("ultimatetransport.cell_side.both", "Input and output");
+            add("ultimatetransport.cell_display.none", "Nothing");
+            add("ultimatetransport.cell_display.bar", "Charge bar");
+            add("ultimatetransport.cell_display.io", "Input and output");
+            add("message.ultimatetransport.cell_display", "%s: %s");
 
             add("message.ultimatetransport.cell_charge", "%s / %s FE");
             add("tooltip.ultimatetransport.cell_charge", "%s / %s FE");
@@ -157,6 +161,8 @@ public abstract class UTLanguageProvider extends LanguageProvider {
             add("tooltip.ultimatetransport.upgrade.distribution_no", "No distribution mode");
             add("tooltip.ultimatetransport.upgrade.filter_yes", "Filter rules");
             add("tooltip.ultimatetransport.upgrade.filter_no", "No filter rules");
+            add("tooltip.ultimatetransport.upgrade.install", "Sneak and right click a cable face to fit it");
+            add("tooltip.ultimatetransport.upgrade.rules", "%s filter rules (%s), kept on this upgrade");
             add("tooltip.ultimatetransport.configurator", "Click a face to step it, sneak-click to step it back.");
             add("tooltip.ultimatetransport.configurator.sneak", "Sneak and scroll to change mode, or press the mode key for the wheel.");
             add("tooltip.ultimatetransport.configurator.mode", "Mode: %s");
@@ -305,6 +311,10 @@ public abstract class UTLanguageProvider extends LanguageProvider {
             add("ultimatetransport.cell_side.input", "Entrada");
             add("ultimatetransport.cell_side.output", "Salida");
             add("ultimatetransport.cell_side.both", "Entrada y salida");
+            add("ultimatetransport.cell_display.none", "Nada");
+            add("ultimatetransport.cell_display.bar", "Barra de carga");
+            add("ultimatetransport.cell_display.io", "Entrada y salida");
+            add("message.ultimatetransport.cell_display", "%s: %s");
 
             add("message.ultimatetransport.cell_charge", "%s / %s FE");
             add("tooltip.ultimatetransport.cell_charge", "%s / %s FE");
@@ -387,6 +397,8 @@ public abstract class UTLanguageProvider extends LanguageProvider {
             add("tooltip.ultimatetransport.upgrade.distribution_no", "Sin modo de reparto");
             add("tooltip.ultimatetransport.upgrade.filter_yes", "Reglas de filtro");
             add("tooltip.ultimatetransport.upgrade.filter_no", "Sin reglas de filtro");
+            add("tooltip.ultimatetransport.upgrade.install", "Agachado y clic derecho en una cara del cable para colocarla");
+            add("tooltip.ultimatetransport.upgrade.rules", "%s reglas de filtro (%s), guardadas en esta mejora");
             add("tooltip.ultimatetransport.configurator", "Clic en una cara para avanzarla, agachado para retroceder.");
             add("tooltip.ultimatetransport.configurator.sneak", "Agachado y rueda cambia de modo, o la tecla de modos abre la rueda.");
             add("tooltip.ultimatetransport.configurator.mode", "Modo: %s");

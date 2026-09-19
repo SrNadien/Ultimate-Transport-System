@@ -7,6 +7,7 @@ import mekanism.common.capabilities.Capabilities;
 import nadiendev.ultimatetransport.cable.CableBlockEntity;
 import nadiendev.ultimatetransport.cable.CableNetwork;
 import nadiendev.ultimatetransport.cable.SideConfig;
+import nadiendev.ultimatetransport.cable.TransferGuard;
 import nadiendev.ultimatetransport.compat.ChemicalBridge;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -33,16 +34,17 @@ public class MekanismChemicalBridge extends ChemicalBridge {
     }
 
     @Override
-    public void extract(CableBlockEntity cable, Direction side, SideConfig config) {
+    public boolean extract(CableBlockEntity cable, Direction side, SideConfig config) {
         Level level = cable.getLevel();
         if (level == null) {
-            return;
+            return false;
         }
         IChemicalHandler source = level.getCapability(Capabilities.CHEMICAL.block(),
                 cable.getBlockPos().relative(side), side.getOpposite());
         if (source == null) {
-            return;
+            return false;
         }
+        boolean carried = false;
         long remaining = config.tier().gasRate();
         for (int tank = 0; tank < source.getChemicalTanks() && remaining > 0; tank++) {
             ChemicalStack inTank = source.getChemicalInTank(tank);
@@ -57,12 +59,25 @@ public class MekanismChemicalBridge extends ChemicalBridge {
             if (moved > 0) {
                 source.extractChemical(drained.copyWithAmount(moved), Action.EXECUTE);
                 remaining -= moved;
+                carried = true;
             }
         }
+        return carried;
     }
 
     /** Spreads a chemical over the network's insert faces, mirroring how fluids are spread. */
     public long push(CableBlockEntity cable, Direction side, SideConfig config, ChemicalStack stack, boolean simulate) {
+        if (!TransferGuard.enter(cable)) {
+            return 0;
+        }
+        try {
+            return route(cable, side, config, stack, simulate);
+        } finally {
+            TransferGuard.exit(cable);
+        }
+    }
+
+    private long route(CableBlockEntity cable, Direction side, SideConfig config, ChemicalStack stack, boolean simulate) {
         Level level = cable.getLevel();
         if (level == null || stack.isEmpty()) {
             return 0;

@@ -39,15 +39,12 @@ public class UTBlockStateProvider extends BlockStateProvider {
     private void battery(EnergyCellBlock block) {
         String name = block.tier().blockName();
         var builder = getMultipartBuilder(block);
-        for (int charge = 0; charge <= EnergyCellBlock.STEPS; charge++) {
-            builder.part()
-                    .modelFile(models().cubeColumn("block/" + name + "_" + charge,
-                            modLoc("block/" + name + "_side_" + charge),
-                            modLoc("block/" + name + "_end")))
-                    .addModel()
-                    .condition(EnergyCellBlock.CHARGE, charge)
-                    .end();
-        }
+        builder.part()
+                .modelFile(models().cubeColumn("block/" + name,
+                        modLoc("block/" + name + "_side_plain"),
+                        modLoc("block/" + name + "_end")))
+                .addModel()
+                .end();
         for (var entry : EnergyCellBlock.JOINED.entrySet()) {
             builder.part()
                     .modelFile(models().getExistingFile(

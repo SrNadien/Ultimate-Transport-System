@@ -1,4 +1,96 @@
 # Changelog
+## [1.0.5]
+
+### Added
+
+- **Battery faces carry a display.** Sneak and right click a battery on one of its four upright
+  faces with an empty hand and that face steps through nothing, the charge bar, and an input and
+  output readout. A face left on nothing is plain casing, so a wall of batteries shows one bar where
+  you put it instead of a bar on every block. Faces set to the bar and stacked on top of each other
+  are read as one column: the charge fills the run from its floor upwards, so a stack carries a
+  single bar through it whatever else is joined to it.
+- **The input and output face names what the whole bank is taking in and giving out**, averaged over
+  the last half second, in green when it is gaining and red when it is losing.
+
+- **Filter rules live on the upgrade, not in the cable.** Pulling an upgrade out of a face takes its
+  rules with it, and putting it anywhere else brings them back, so a filter worked out once can be
+  copied around the network by moving the item. The upgrade says in its tooltip how many rules it
+  carries and whether they let things through or hold them back. Cables from an older world hand
+  their rules to the upgrade already sitting in the face the first time they load.
+- **Upgrades go in with a sneaking right click, as in Pipez.** Holding an upgrade and sneak-clicking
+  the face of a cable that touches a container fits it there, without opening anything. A face that
+  already holds a different upgrade gives the old one back to the hand that swapped it, and one that
+  already holds the same is left alone. On a universal cable a single click fits the upgrade to every
+  cargo that face carries, one item per cargo, for as long as the hand has them.
+
+### Fixed
+
+- **A machine that only pushes can now feed a cable.** A cable offered itself to its neighbours only
+  after it had found something to read on the other side, so a machine that exposes no inventory of
+  its own and simply shoves what it makes into whatever is next to it found nothing to shove into.
+  Advanced AE's quantum crafter is one: it never registers an item handler, so nothing can reach into
+  it, and pushing to its neighbours is the only way out. A cable now offers itself on every face
+  except the ones set to be left alone, whatever the block on the other side does.
+
+- **Jade shows what a battery bank really holds.** Its own energy line reads the battery through the
+  same int-bound capability, so it was naming figures cut down to fit rather than the real ones. That
+  line is now taken out and replaced with one carrying the true charge and the true room, filled to
+  the real proportion.
+- **A meter reading a large bank no longer shows it nearly full when it is nearly empty.** Energy is
+  handed around in ints, and a bank past the sixth rung holds more than an int can count, so the
+  charge and the room were each cut down to the largest int separately: 1.98G held in 5.24G of room
+  was reported as 1.98G of 2.14G, which reads as ninety per cent rather than thirty eight. Both
+  figures are now reported as the same share of that limit that the real ones are of each other, so
+  anything reading the battery from outside sees the right proportion. The exact numbers were always
+  right in the tooltip and still are.
+
+- **A rider no longer gets caught partway down a tube.** The walls a tube puts up against a rider
+  were being decided by the same rule that decides which faces to draw, so a tube standing next to
+  one pointing another way dropped its wall on that side. The wall in the tube below kept its own,
+  and its top edge became a ledge: anyone drifting into that corner on the way down landed on it and
+  stopped, short of the station and with the tube still pushing at them. A tube now walls every side
+  it does not carry along, whatever its neighbours point at, so a shaft is smooth from top to bottom.
+  Nothing that could be ridden through before is closed: a tube is only ever entered and left along
+  the way it points, and the floor a run drops through is unchanged.
+
+## [1.0.4]
+
+### Changed
+
+- **A cable face that keeps coming up empty goes quiet for two seconds.** With nowhere to put what
+  it carries, a cable walked its whole list of destinations on every attempt and got the same
+  answer every time. On a server where a mod hands out extra ticks that pointless walk ran thousands
+  of times a second and the tick loop drowned in it. Ten empty attempts in a row on a face now put
+  that face to sleep, and the wait is counted against the clock on the wall, not against ticks, so
+  no amount of extra ticks can shorten it. The first thing actually carried wakes the face and
+  clears the count, and so does any block placed or broken on the network, so a chest set down next
+  to a sleeping cable is served at once instead of after the wait.
+
+## [1.0.3]
+
+### Fixed
+
+- **A tube coming down into a station no longer ends at a ceiling.** Stations refuse to throw a
+  rider up into a tube that points back down, because the tube would only push them in again. That
+  refusal was also deciding whether the station had a roof, so a descending tube ran into solid
+  block and nobody, and nothing, came out of it. The roof is now open under any tube at all, and the
+  refusal only decides whether the station pushes, which is the one thing it was meant to stop. The
+  floor is unchanged: it still opens only for a tube heading down, so a rider standing in a station
+  is not bounced by a tube pushing up from below.
+
+## [1.0.2]
+
+### Fixed
+
+- **Cables no longer crash the server passing a stack back and forth with another mod’s pipe.** A
+  Mekanism logistical transporter answers an insert by asking its own network which neighbours can
+  take the stack, and a cable is one of those neighbours: the cable offered the stack to the
+  transporter, the transporter turned around and offered it to the cable, and the two handed it back
+  and forth until the thread ran out of room and the server went down. A cable now refuses anything
+  that reaches it while it is already pushing, and a single transfer gives up after eight pipes, so
+  the loop ends on the first bounce. The same guard covers energy, fluids and chemicals, which could
+  circle the same way.
+
 ## [1.0.1]
 
 ### Added

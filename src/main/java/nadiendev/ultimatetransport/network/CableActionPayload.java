@@ -67,7 +67,10 @@ public record CableActionPayload(BlockPos pos, int side, int action, int value) 
         switch (payload.action()) {
             case CYCLE_REDSTONE -> config.setRedstone(config.redstone().next());
             case CYCLE_DISTRIBUTION -> config.setDistribution(config.distribution().next());
-            case CYCLE_FILTER_MODE -> config.filter().cycleMode();
+            case CYCLE_FILTER_MODE -> {
+                config.filter().cycleMode();
+                config.writeFilter();
+            }
             case PRIORITY -> config.setPriority(Math.clamp(payload.value(), -128, 128));
             case TOGGLE_RETRIEVE -> config.setRetrieve(!config.retrieve());
             default -> {

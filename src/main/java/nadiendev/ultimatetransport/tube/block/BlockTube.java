@@ -135,7 +135,7 @@ public class BlockTube extends Block implements IConnectable {
         return shape;
     }
 
-    /** A wall on each side that is neither connected to another tube nor on the travel axis. */
+    /** A wall on every side but the travel axis, the ceiling, and a floor the ride drops through. */
     @Override
     protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         Entity entity = context instanceof EntityCollisionContext ctx ? ctx.getEntity() : null;
@@ -146,10 +146,10 @@ public class BlockTube extends Block implements IConnectable {
         Direction dir = state.getValue(FACING);
         VoxelShape shape = Shapes.empty();
         for (Direction d : Direction.values()) {
-            if (travelConnected(level, pos, state, d) || d.getAxis() == dir.getAxis()) {
+            if (d.getAxis() == dir.getAxis() || d == Direction.UP) {
                 continue;
             }
-            if (d == Direction.UP && dir.getAxis() != Direction.Axis.Y) {
+            if (d == Direction.DOWN && travelConnected(level, pos, state, d)) {
                 continue;
             }
             shape = Shapes.or(shape, Utilities.getCollisionBoxPart(d));

@@ -24,8 +24,11 @@ import java.util.Map;
 public class EnergyCellBlockEntity extends BlockEntity {
     public static final int CHARGE_SLOT = 0;
     public static final int DISCHARGE_SLOT = 1;
+    private static final int RUN_LIMIT = 64;
+    private static final int RATE_WINDOW = 10;
 
     private final Map<Direction, CellSideMode> sides = new EnumMap<>(Direction.class);
+    private final Map<Direction, CellDisplayMode> display = new EnumMap<>(Direction.class);
 
     private final ItemStackHandler slots = new ItemStackHandler(2) {
         @Override
@@ -42,6 +45,10 @@ public class EnergyCellBlockEntity extends BlockEntity {
     private List<EnergyCellBlockEntity> bank;
     private int bankRevision = -1;
     private boolean autoEject = true;
+    private long inTally;
+    private long outTally;
+    private long inRate;
+    private long outRate;
     private long stored;
     private long lastSynced = -1;
     private boolean dirty;
@@ -50,6 +57,9 @@ public class EnergyCellBlockEntity extends BlockEntity {
         super(UTBlockEntities.ENERGY_CELL.get(), pos, state);
         for (Direction direction : Direction.values()) {
             sides.put(direction, CellSideMode.BOTH);
+        }
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            display.put(direction, CellDisplayMode.NONE);
         }
     }
 
@@ -89,22 +99,59 @@ public class EnergyCellBlockEntity extends BlockEntity {
         bank = null;
     }
 
+    public CellDisplayMode display(Direction direction) {
+        return display.getOrDefault(direction, CellDisplayMode.NONE);
+    }
+
+    public void setDisplay(Direction direction, CellDisplayMode mode) {
+        if (!direction.getAxis().isHorizontal()) {
+            return;
+        }
+        display.put(direction, mode);
+        setChanged();
+        if (level != null) {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
+    }
+
+    public void cycleDisplay(Direction direction) {
+        setDisplay(direction, display(direction).next());
+    }
+
+    public long inRate() {
+        return inRate;
+    }
+
+    public long outRate() {
+        return outRate;
+    }
+
     /**
-     * How much of this block's own window is lit. The bank is read as one column: the charge fills
-     * it from the floor up, so a stack shows a single bar running through it rather than one gauge
-     * per block, which is how Ender IO's capacitor banks read.
+     * How much of this face is lit. A run of faces set to show the bar is read as one column, so the
+     * charge fills it from the floor of the run upwards and a stack carries a single bar through it.
      */
-    public int gauge() {
-        List<EnergyCellBlockEntity> members = bank();
-        int floor = Integer.MAX_VALUE;
-        int ceiling = Integer.MIN_VALUE;
-        for (EnergyCellBlockEntity member : members) {
-            floor = Math.min(floor, member.getBlockPos().getY());
-            ceiling = Math.max(ceiling, member.getBlockPos().getY());
+    public int barLevel(Direction face) {
+        int floor = worldPosition.getY();
+        int ceiling = floor;
+        while (barAt(floor - 1, face)) {
+            floor--;
+        }
+        while (barAt(ceiling + 1, face)) {
+            ceiling++;
         }
         int height = ceiling - floor + 1;
         double share = fillRatio() * height - (worldPosition.getY() - floor);
         return EnergyCellBlock.chargeLevel(Math.clamp(share, 0.0, 1.0));
+    }
+
+    private boolean barAt(int y, Direction face) {
+        if (level == null || Math.abs(y - worldPosition.getY()) > RUN_LIMIT) {
+            return false;
+        }
+        BlockPos at = new BlockPos(worldPosition.getX(), y, worldPosition.getZ());
+        return level.getBlockEntity(at) instanceof EnergyCellBlockEntity other
+                && other.tier() == tier()
+                && other.display(face) == CellDisplayMode.BAR;
     }
 
     public void setStored(long value) {
@@ -159,10 +206,7 @@ public class EnergyCellBlockEntity extends BlockEntity {
         }
         cell.distribute();
 
-        int lit = cell.gauge();
-        if (state.getValue(EnergyCellBlock.CHARGE) != lit) {
-            level.setBlock(pos, state.setValue(EnergyCellBlock.CHARGE, lit), 3);
-        }
+        cell.tallyRates(level);
         if (cell.dirty) {
             cell.dirty = false;
             cell.setChanged();
@@ -171,6 +215,30 @@ public class EnergyCellBlockEntity extends BlockEntity {
             cell.lastSynced = cell.stored;
             level.sendBlockUpdated(pos, state, state, 3);
         }
+    }
+
+    private void tallyRates(Level level) {
+        if (level.getGameTime() % RATE_WINDOW != 0L) {
+            return;
+        }
+        long wasIn = inRate;
+        long wasOut = outRate;
+        inRate = inTally / RATE_WINDOW;
+        outRate = outTally / RATE_WINDOW;
+        inTally = 0L;
+        outTally = 0L;
+        if ((wasIn != inRate || wasOut != outRate) && showsRates()) {
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
+    }
+
+    private boolean showsRates() {
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            if (display(direction) == CellDisplayMode.IO) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void distribute() {
@@ -251,6 +319,7 @@ public class EnergyCellBlockEntity extends BlockEntity {
         long accepted = Math.min(Math.min(amount, tier.transfer()), tier.capacity() - stored);
         if (accepted > 0 && !simulate) {
             stored += accepted;
+            inTally += accepted;
             dirty = true;
         }
         return Math.max(accepted, 0);
@@ -264,6 +333,7 @@ public class EnergyCellBlockEntity extends BlockEntity {
         long removed = Math.min(Math.min(amount, tier.transfer()), stored);
         if (removed > 0 && !simulate) {
             stored -= removed;
+            outTally += removed;
             dirty = true;
         }
         return Math.max(removed, 0);
@@ -287,6 +357,13 @@ public class EnergyCellBlockEntity extends BlockEntity {
             faces.putString(direction.getSerializedName(), sides.get(direction).getSerializedName());
         }
         tag.put("Sides", faces);
+        CompoundTag shown = new CompoundTag();
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            shown.putString(direction.getSerializedName(), display(direction).getSerializedName());
+        }
+        tag.put("Display", shown);
+        tag.putLong("InRate", inRate);
+        tag.putLong("OutRate", outRate);
         tag.put("Slots", slots.serializeNBT(registries));
     }
 
@@ -304,6 +381,14 @@ public class EnergyCellBlockEntity extends BlockEntity {
         if (tag.contains("Slots")) {
             slots.deserializeNBT(registries, tag.getCompound("Slots"));
         }
+        CompoundTag shown = tag.getCompound("Display");
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            if (shown.contains(direction.getSerializedName())) {
+                display.put(direction, CellDisplayMode.byName(shown.getString(direction.getSerializedName())));
+            }
+        }
+        inRate = tag.getLong("InRate");
+        outRate = tag.getLong("OutRate");
     }
 
     @Override

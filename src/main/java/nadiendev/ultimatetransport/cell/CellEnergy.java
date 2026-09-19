@@ -5,8 +5,10 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * One face of a cell seen through the energy capability. Cells hold more than an int can carry, so
- * the reported figures saturate at {@link Integer#MAX_VALUE}; the real numbers are in the tooltip.
+ * One face of a cell seen through the energy capability. A bank holds more than an int can carry, so
+ * once it does, both figures are reported as the same share of {@link Integer#MAX_VALUE} that the
+ * real ones are of each other. A meter reading them sees the right proportion rather than a bar that
+ * sits full; the real numbers are in the tooltip.
  */
 public record CellEnergy(EnergyCellBlockEntity cell, @Nullable Direction side) implements IEnergyStorage {
 
@@ -26,12 +28,24 @@ public record CellEnergy(EnergyCellBlockEntity cell, @Nullable Direction side) i
 
     @Override
     public int getEnergyStored() {
-        return (int) Math.min(cell.stored(), Integer.MAX_VALUE);
+        return scale(cell.stored());
     }
 
     @Override
     public int getMaxEnergyStored() {
-        return (int) Math.min(cell.capacity(), Integer.MAX_VALUE);
+        return scale(cell.capacity());
+    }
+
+    private int scale(long value) {
+        long room = cell.capacity();
+        if (room <= 0L) {
+            return 0;
+        }
+        if (room <= Integer.MAX_VALUE) {
+            return (int) Math.max(Math.min(value, room), 0L);
+        }
+        double share = Math.max(Math.min((double) value / room, 1.0), 0.0);
+        return (int) Math.round(share * Integer.MAX_VALUE);
     }
 
     @Override

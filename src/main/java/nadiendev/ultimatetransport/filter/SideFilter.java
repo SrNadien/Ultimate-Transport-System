@@ -37,6 +37,21 @@ public class SideFilter {
         mode = mode.next();
     }
 
+    public void clear() {
+        entries.clear();
+        mode = FilterMode.WHITELIST;
+    }
+
+    public FilterData data() {
+        return new FilterData(mode, List.copyOf(entries));
+    }
+
+    public void apply(FilterData data) {
+        mode = data.mode();
+        entries.clear();
+        entries.addAll(data.entries());
+    }
+
     /** Adds a rule, or replaces the one with the same id when the editor sends an edit back. */
     public void put(FilterEntry entry) {
         for (int index = 0; index < entries.size(); index++) {

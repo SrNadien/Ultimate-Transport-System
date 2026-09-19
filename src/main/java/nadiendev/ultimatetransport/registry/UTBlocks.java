@@ -57,7 +57,6 @@ public final class UTBlocks {
                             .mapColor(MapColor.COLOR_GRAY)
                             .strength(3.0F, 12.0F)
                             .sound(SoundType.METAL)
-                            .lightLevel(state -> state.getValue(EnergyCellBlock.CHARGE) * 12 / EnergyCellBlock.STEPS)
                             .requiresCorrectToolForDrops()));
         }
     }

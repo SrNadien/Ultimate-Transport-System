@@ -31,6 +31,7 @@ public class ChemicalBridge {
         return false;
     }
 
-    public void extract(CableBlockEntity cable, Direction side, SideConfig config) {
+    public boolean extract(CableBlockEntity cable, Direction side, SideConfig config) {
+        return false;
     }
 }

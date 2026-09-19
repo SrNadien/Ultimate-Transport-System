@@ -1,7 +1,9 @@
 package nadiendev.ultimatetransport.cable;
 
 import nadiendev.ultimatetransport.api.TransferType;
+import nadiendev.ultimatetransport.filter.FilterData;
 import nadiendev.ultimatetransport.filter.SideFilter;
+import nadiendev.ultimatetransport.registry.UTDataComponents;
 import nadiendev.ultimatetransport.item.UpgradeItem;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -84,6 +86,28 @@ public class SideConfig {
 
     public void setUpgrade(ItemStack upgrade) {
         this.upgrade = upgrade;
+        readFilter();
+    }
+
+    private void readFilter() {
+        FilterData carried = upgrade.isEmpty() ? null : upgrade.get(UTDataComponents.FILTER.get());
+        if (carried == null) {
+            filter.clear();
+        } else {
+            filter.apply(carried);
+        }
+    }
+
+    public void writeFilter() {
+        if (upgrade.isEmpty()) {
+            return;
+        }
+        FilterData held = filter.data();
+        if (held.isEmpty()) {
+            upgrade.remove(UTDataComponents.FILTER.get());
+        } else {
+            upgrade.set(UTDataComponents.FILTER.get(), held);
+        }
     }
 
     public SideFilter filter() {
@@ -123,7 +147,6 @@ public class SideConfig {
         if (!upgrade.isEmpty()) {
             tag.put("Upgrade", upgrade.save(registries));
         }
-        tag.put("Filter", filter.save(registries));
         return tag;
     }
 
@@ -138,8 +161,10 @@ public class SideConfig {
         upgrade = tag.contains("Upgrade")
                 ? ItemStack.parse(registries, tag.getCompound("Upgrade")).orElse(ItemStack.EMPTY)
                 : ItemStack.EMPTY;
-        if (tag.contains("Filter")) {
+        readFilter();
+        if (tag.contains("Filter") && filter.entries().isEmpty()) {
             filter.load(tag.getCompound("Filter"), registries);
+            writeFilter();
         }
     }
 }

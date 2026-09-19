@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "ultimatetransport:block/energy_cell_8_end",
-    "side": "ultimatetransport:block/energy_cell_8_side_8"
-  }
-}

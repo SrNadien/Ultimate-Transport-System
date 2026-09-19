@@ -9,6 +9,7 @@ import nadiendev.ultimatetransport.registry.UTBlockEntities;
 import nadiendev.ultimatetransport.registry.UTDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.util.StringRepresentable;
@@ -32,7 +33,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -51,8 +51,6 @@ public class EnergyCellBlock extends BaseEntityBlock {
     /** How many of the four bars on the casing are lit, and how brightly the cell glows. */
     public static final int STEPS = 8;
 
-    public static final IntegerProperty CHARGE = IntegerProperty.create("charge", 0, STEPS);
-
     /** Set on a side that has a battery of the same rung against it, so no rim is drawn there. */
     public static final Map<Direction, BooleanProperty> JOINED = Map.of(
             Direction.NORTH, BooleanProperty.create("north"),
@@ -67,7 +65,7 @@ public class EnergyCellBlock extends BaseEntityBlock {
     public EnergyCellBlock(EnergyCellTier tier, Properties properties) {
         super(properties);
         this.tier = tier;
-        BlockState base = stateDefinition.any().setValue(CHARGE, 0);
+        BlockState base = stateDefinition.any();
         for (BooleanProperty joined : JOINED.values()) {
             base = base.setValue(joined, false);
         }
@@ -76,7 +74,6 @@ public class EnergyCellBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(CHARGE);
         JOINED.values().forEach(builder::add);
     }
 
@@ -139,8 +136,18 @@ public class EnergyCellBlock extends BaseEntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos,
                                                Player player, BlockHitResult hit) {
+        boolean stepDisplay = player.isSecondaryUseActive() && hit.getDirection().getAxis().isHorizontal();
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
+        }
+        if (stepDisplay) {
+            if (level.getBlockEntity(pos) instanceof EnergyCellBlockEntity cell) {
+                cell.cycleDisplay(hit.getDirection());
+                player.displayClientMessage(Component.translatable("message.ultimatetransport.cell_display",
+                        Component.translatable("ultimatetransport.direction." + hit.getDirection().getSerializedName()),
+                        Component.translatable(cell.display(hit.getDirection()).translationKey())), true);
+            }
+            return InteractionResult.CONSUME;
         }
         if (level.getBlockEntity(pos) instanceof EnergyCellBlockEntity cell && player instanceof ServerPlayer viewer) {
             viewer.openMenu(new SimpleMenuProvider(

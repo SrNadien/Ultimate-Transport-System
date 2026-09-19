@@ -54,6 +54,9 @@ public class CableBlockEntity extends BlockEntity {
     private boolean refreshing = false;
     private boolean refreshQueued = false;
 
+    private final TransferPause pause = new TransferPause();
+    private int pauseVersion = -1;
+
     public CableBlockEntity(BlockPos pos, BlockState state) {
         super(UTBlockEntities.CABLE.get(), pos, state);
         for (Direction direction : Direction.values()) {
@@ -100,6 +103,12 @@ public class CableBlockEntity extends BlockEntity {
         if (!hasExtract || level == null || routing) {
             return;
         }
+        int network = CableNetwork.version();
+        if (pauseVersion != network) {
+            // Something was built or broken: a face that gave up may have somewhere to go now.
+            pauseVersion = network;
+            pause.wakeAll();
+        }
         boolean powered = level.hasNeighborSignal(worldPosition);
         TransferType type = type();
 
@@ -112,38 +121,50 @@ public class CableBlockEntity extends BlockEntity {
             if (config.mode() != ConnectionMode.EXTRACT || !config.redstone().allows(powered)) {
                 continue;
             }
+            if (!pause.ready(direction, cargo)) {
+                continue;
+            }
             routing = true;
             boolean pulling = config.retrieve();
+            boolean attempted = false;
+            boolean carried = false;
             try {
                 if (cargo == TransferType.ENERGY) {
-                    if (pulling) {
-                        Retrieval.energy(this, direction, config);
-                    } else {
-                        extractEnergy(direction, config);
-                    }
+                    attempted = true;
+                    carried = pulling
+                            ? Retrieval.energy(this, direction, config)
+                            : extractEnergy(direction, config);
                 }
                 if (cargo == TransferType.FLUID) {
-                    if (pulling) {
-                        Retrieval.fluid(this, direction, config);
-                    } else {
-                        extractFluid(direction, config);
-                    }
+                    attempted = true;
+                    carried = pulling
+                            ? Retrieval.fluid(this, direction, config)
+                            : extractFluid(direction, config);
                 }
                 if (cargo == TransferType.SOURCE && !pulling) {
-                    SourceBridge.get().extract(this, direction, config);
+                    attempted = true;
+                    carried = SourceBridge.get().extract(this, direction, config);
                 }
                 if (cargo == TransferType.GAS && !pulling) {
-                    ChemicalBridge.get().extract(this, direction, config);
+                    attempted = true;
+                    carried = ChemicalBridge.get().extract(this, direction, config);
                 }
                 if (cargo == TransferType.ITEM && tickCounter % config.tier().itemInterval() == 0) {
-                    if (pulling) {
-                        Retrieval.items(this, direction, config);
-                    } else {
-                        extractItems(direction, config);
-                    }
+                    attempted = true;
+                    carried = pulling
+                            ? Retrieval.items(this, direction, config)
+                            : extractItems(direction, config);
                 }
             } finally {
                 routing = false;
+            }
+            if (!attempted) {
+                continue;
+            }
+            if (carried) {
+                pause.moved(direction, cargo);
+            } else {
+                pause.missed(direction, cargo);
             }
             }
         }
@@ -217,23 +238,35 @@ public class CableBlockEntity extends BlockEntity {
         return level.getCapability(capability, pos, face);
     }
 
-    private void extractEnergy(Direction side, SideConfig config) {
+    private boolean extractEnergy(Direction side, SideConfig config) {
         IEnergyStorage source = neighbourCapability(Capabilities.EnergyStorage.BLOCK,
                 worldPosition.relative(side), side.getOpposite());
         if (source == null || !source.canExtract()) {
-            return;
+            return false;
         }
         int available = source.extractEnergy(config.tier().energyRate(), true);
         if (available <= 0) {
-            return;
+            return false;
         }
         int moved = pushEnergy(side, config, available, false);
         if (moved > 0) {
             source.extractEnergy(moved, false);
         }
+        return moved > 0;
     }
 
     public int pushEnergy(Direction side, SideConfig config, int budget, boolean simulate) {
+        if (!TransferGuard.enter(this)) {
+            return 0;
+        }
+        try {
+            return routeEnergy(side, config, budget, simulate);
+        } finally {
+            TransferGuard.exit(this);
+        }
+    }
+
+    private int routeEnergy(Direction side, SideConfig config, int budget, boolean simulate) {
         List<Target> targets = targets(side);
         if (targets.isEmpty() || budget <= 0) {
             return 0;
@@ -263,12 +296,13 @@ public class CableBlockEntity extends BlockEntity {
         return budget - remaining;
     }
 
-    private void extractFluid(Direction side, SideConfig config) {
+    private boolean extractFluid(Direction side, SideConfig config) {
         IFluidHandler source = neighbourCapability(Capabilities.FluidHandler.BLOCK,
                 worldPosition.relative(side), side.getOpposite());
         if (source == null) {
-            return;
+            return false;
         }
+        boolean carried = false;
         int remaining = config.tier().fluidRate();
         for (int tank = 0; tank < source.getTanks() && remaining > 0; tank++) {
             FluidStack inTank = source.getFluidInTank(tank);
@@ -283,11 +317,24 @@ public class CableBlockEntity extends BlockEntity {
             if (filled > 0) {
                 source.drain(drained.copyWithAmount(filled), IFluidHandler.FluidAction.EXECUTE);
                 remaining -= filled;
+                carried = true;
             }
         }
+        return carried;
     }
 
     public int pushFluid(Direction side, SideConfig config, FluidStack stack, boolean simulate) {
+        if (!TransferGuard.enter(this)) {
+            return 0;
+        }
+        try {
+            return routeFluid(side, config, stack, simulate);
+        } finally {
+            TransferGuard.exit(this);
+        }
+    }
+
+    private int routeFluid(Direction side, SideConfig config, FluidStack stack, boolean simulate) {
         List<Target> targets = targets(side);
         if (targets.isEmpty() || stack.isEmpty()) {
             return 0;
@@ -323,12 +370,13 @@ public class CableBlockEntity extends BlockEntity {
         return stack.getAmount() - remaining;
     }
 
-    private void extractItems(Direction side, SideConfig config) {
+    private boolean extractItems(Direction side, SideConfig config) {
         IItemHandler source = neighbourCapability(Capabilities.ItemHandler.BLOCK,
                 worldPosition.relative(side), side.getOpposite());
         if (source == null) {
-            return;
+            return false;
         }
+        boolean carried = false;
         int remaining = config.tier().itemCount();
         for (int slot = 0; slot < source.getSlots() && remaining > 0; slot++) {
             ItemStack candidate = source.extractItem(slot, remaining, true);
@@ -339,11 +387,24 @@ public class CableBlockEntity extends BlockEntity {
             if (inserted > 0) {
                 source.extractItem(slot, inserted, false);
                 remaining -= inserted;
+                carried = true;
             }
         }
+        return carried;
     }
 
     public ItemStack pushItems(Direction side, SideConfig config, ItemStack stack, boolean simulate) {
+        if (!TransferGuard.enter(this)) {
+            return stack;
+        }
+        try {
+            return routeItems(side, config, stack, simulate);
+        } finally {
+            TransferGuard.exit(this);
+        }
+    }
+
+    private ItemStack routeItems(Direction side, SideConfig config, ItemStack stack, boolean simulate) {
         List<Target> targets = targets(side);
         if (targets.isEmpty() || stack.isEmpty()) {
             return stack;
