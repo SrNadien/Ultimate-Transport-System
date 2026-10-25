@@ -1,4 +1,22 @@
 # Changelog
+## [1.0.6]
+
+### Fixed
+
+- **Item cables no longer hammer a destination that has already said no.** A source holding the
+  same stack in many slots walked every target once per slot to hear the same refusal, which on a
+  busy server with a large storage controller on the other end ate a big share of the tick. Once
+  the targets have turned an item away during a pass, the remaining slots holding it are skipped.
+- **A face with nowhere to put its cargo goes back to sleep after a single empty attempt.** It used
+  to wake from its two second nap with the count reset and spend another ten attempts finding out
+  nothing had changed. A change in the network still wakes every face at once.
+
+### Project
+
+- A commit message carrying `[curseforge]` (or `[curseforge beta]` / `[curseforge alpha]`) now
+  publishes the jar to CurseForge with this changelog section, and Dependabot keeps the workflow
+  actions current.
+
 ## [1.0.5]
 
 ### Added

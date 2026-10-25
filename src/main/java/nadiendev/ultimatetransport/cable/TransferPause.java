@@ -57,7 +57,9 @@ public final class TransferPause {
         if (++misses[slot] < MISSES_BEFORE_PAUSE) {
             return;
         }
-        misses[slot] = 0;
+        // Waking up on one miss short of the limit: a face that is still fruitless goes straight
+        // back to sleep instead of paying for another full run of empty attempts.
+        misses[slot] = MISSES_BEFORE_PAUSE - 1;
         sleeping[slot] = true;
         wakeAt[slot] = System.nanoTime() + PAUSE_MILLIS * 1_000_000L;
     }

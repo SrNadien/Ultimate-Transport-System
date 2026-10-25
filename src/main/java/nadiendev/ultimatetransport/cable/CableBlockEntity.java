@@ -378,12 +378,22 @@ public class CableBlockEntity extends BlockEntity {
         }
         boolean carried = false;
         int remaining = config.tier().itemCount();
+        // Items the destinations have already turned away this pass: a source full of the same
+        // stack would otherwise walk every target once per slot to hear the same no.
+        List<ItemStack> refused = null;
         for (int slot = 0; slot < source.getSlots() && remaining > 0; slot++) {
             ItemStack candidate = source.extractItem(slot, remaining, true);
-            if (candidate.isEmpty() || !config.filter().allowsItem(candidate)) {
+            if (candidate.isEmpty() || !config.filter().allowsItem(candidate) || isRefused(refused, candidate)) {
                 continue;
             }
-            int inserted = candidate.getCount() - pushItems(side, config, candidate, false).getCount();
+            int left = pushItems(side, config, candidate, false).getCount();
+            int inserted = candidate.getCount() - left;
+            if (left > 0) {
+                if (refused == null) {
+                    refused = new ArrayList<>(4);
+                }
+                refused.add(candidate);
+            }
             if (inserted > 0) {
                 source.extractItem(slot, inserted, false);
                 remaining -= inserted;
@@ -391,6 +401,18 @@ public class CableBlockEntity extends BlockEntity {
             }
         }
         return carried;
+    }
+
+    private static boolean isRefused(@Nullable List<ItemStack> refused, ItemStack candidate) {
+        if (refused == null) {
+            return false;
+        }
+        for (ItemStack stack : refused) {
+            if (ItemStack.isSameItemSameComponents(stack, candidate)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ItemStack pushItems(Direction side, SideConfig config, ItemStack stack, boolean simulate) {
