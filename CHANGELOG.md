@@ -1,4 +1,14 @@
 # Changelog
+## [1.0.7]
+
+### Fixed
+
+- **Cables next to a Mekanism logistical transporter no longer snowball.** A transporter answers an
+  insert by simulating one into every acceptor around it, and each cable it finds there asks the
+  transporter again, so a push could nest eight cables deep and multiply its work by the number of
+  neighbours at every hop. A push may now be nested inside one other cable at most: a cable that
+  feeds a transporter that feeds another cable still routes, anything past that is refused.
+
 ## [1.0.6]
 
 ### Fixed

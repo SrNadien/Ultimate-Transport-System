@@ -9,11 +9,17 @@ import java.util.Deque;
  * can bounce a stack between them until the thread runs out of stack. Every push claims the cable it
  * runs on: a cable that is already pushing, or a chain that has grown past {@link #MAX_DEPTH} hops,
  * refuses the transfer instead of recursing.
+ *
+ * <p>The depth is kept tiny on purpose. Such a pipe answers each insert by simulating one into every
+ * acceptor around it, and every cable it finds there asks the pipe again, so the work of a chain
+ * multiplies by the number of neighbours at every hop. A cable that hands its stack to a pipe that
+ * hands it to another cable is a route worth keeping; anything deeper only repeats the same
+ * simulations.</p>
  */
 public final class TransferGuard {
 
-    /** How many pipes one transfer may travel through before it counts as a loop. */
-    private static final int MAX_DEPTH = 8;
+    /** How many cables one transfer may be nested inside before it counts as a loop. */
+    private static final int MAX_DEPTH = 2;
 
     private static final ThreadLocal<Deque<Object>> ACTIVE = ThreadLocal.withInitial(ArrayDeque::new);
 
